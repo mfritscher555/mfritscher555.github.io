@@ -1,0 +1,34 @@
+/* This is where the css code will go */
+
+
+body {
+    background-color: #110f0e; /* same as #ffcc99 */
+  }
+
+
+.banner {
+  background-color: midnightblue;
+  color: white;
+  margin-top: 75px;
+  text-align: center;
+}
+
+.w3-display-container {
+  background-color: #201f1f;
+}
+
+.w3-container {
+  background-color: #201f1f;
+  color: white;
+}
+
+
+.w3-container-w3-card-w3-black-w3-margin-bottom {
+  background-color: #201f1f;
+}
+
+
+.w3-container.w3-card.w3-black {
+  background-color: #201f1f;
+}
+
