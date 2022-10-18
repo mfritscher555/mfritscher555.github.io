@@ -18,7 +18,7 @@ z-index: 9999;
 /* Getting the different pages to display across */
 .navbar li {
 display: inline-block;
-padding: 10px 20px
+padding: 10px 20px;
 }
 
 /* Getting rid of the underlines  */
