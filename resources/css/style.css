@@ -2,64 +2,70 @@
 
 
 body {
-    background-color: #110f0e; /* same as #ffcc99 */
-  }
+  background-color: #1b1b1b; 
+}
 
 
 /* Defining the navbar; z-index brings nav bar to the front */
 .navbar {
-  background: #201f1f;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999; 
+background: #002171;
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 9999; 
 }
 
 /* Getting the different pages to display across */
 .navbar li {
-  display: inline-block;
-  padding: 10px 20px
+display: inline-block;
+padding: 10px 20px
 }
 
 /* Getting rid of the underlines  */
 .navbar a {
-  text-decoration: none;
+text-decoration: none;
+color: white;
 }
 
 .banner {
-  background-color: 201f1f;
-  color: white;
-  margin-top: 75px;
-  text-align: center;
+background-color: #5472d3;
+color: white;
+margin-top: 75px;
+text-align: center;
 }
 
 /* Creates a border/shadow for my headshot */
 #headshot {
-  filter: drop-shadow(1px 1px 1px black);
+filter: drop-shadow(1px 1px 1px black);
 }
 
 .w3-display-container {
-  background-color: #201f1f;
+background-color: #201f1f;
 }
 
 .w3-container {
-  background-color: #201f1f;
-  color: white;
+background-color: #201f1f;
+color: white;
 }
 
 
 .w3-container-w3-card-w3-black-w3-margin-bottom {
-  background-color: #201f1f;
+background-color: #201f1f;
 }
 
 
 .w3-container.w3-card.w3-black {
-  background-color: #201f1f;
+background-color: #201f1f;
 }
 
 
 #granada {
-  height: 100px; 
-  width: 100px;
-  float: right;
+height: 100px; 
+width: 100px;
+float: right;
+}
+
+
+.fa.fa-briefcase.fa-fw.w3-margin-right.w3-large.w3-text-purple {
+  color: #5472d3;
 }
