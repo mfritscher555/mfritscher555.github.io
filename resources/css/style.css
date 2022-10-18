@@ -43,6 +43,10 @@ filter: drop-shadow(1px 1px 1px black);
 background-color: #201f1f;
 }
 
+.w3-tag.w3-round {
+  background-color:#5472d3;
+}
+
 .w3-container {
 background-color: #201f1f;
 color: white;
@@ -66,6 +70,19 @@ float: right;
 }
 
 
-.fa.fa-briefcase.fa-fw.w3-margin-right.w3-large.w3-text-purple {
-  color: #5472d3;
+
+
+ /* Changing colors of the icons */
+ 
+.fa-solid.fa-briefcase.fa-fw {
+color: #5472d3;
+}
+
+.a-solid.fa-house.fa-fw {
+color:#5472d3;
+}
+
+i {
+  margin-right: 10px;
+  color:#5472d3
 }
