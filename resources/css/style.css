@@ -6,11 +6,36 @@ body {
   }
 
 
+/* Defining the navbar; z-index brings nav bar to the front */
+.navbar {
+  background: #0a1c49;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999; 
+}
+
+/* Getting the different pages to display across */
+.navbar li {
+  display: inline-block;
+  padding: 10px 20px
+}
+
+/* Getting rid of the underlines  */
+.navbar a {
+  text-decoration: none;
+}
+
 .banner {
-  background-color: midnightblue;
+  background-color: 201f1f;
   color: white;
   margin-top: 75px;
   text-align: center;
+}
+
+/* Creates a border/shadow for my headshot */
+#headshot {
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 .w3-display-container {
@@ -32,3 +57,9 @@ body {
   background-color: #201f1f;
 }
 
+
+#granada {
+  height: 100px; 
+  width: 100px;
+  float: right;
+}
