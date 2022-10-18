@@ -8,7 +8,7 @@ body {
 
 /* Defining the navbar; z-index brings nav bar to the front */
 .navbar {
-  background: #0a1c49;
+  background: #201f1f;
   position: fixed;
   top: 0;
   width: 100%;
