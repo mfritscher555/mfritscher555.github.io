@@ -25,6 +25,7 @@ padding: 10px 20px;
 .navbar a {
 text-decoration: none;
 color: white;
+width: 100%;
 }
 
 .banner {
@@ -32,6 +33,12 @@ background-color: #5472d3;
 color: white;
 margin-top: 75px;
 text-align: center;
+}
+
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 25px; /* change this to whatever height you want it */
 }
 
 /* Creates a border/shadow for my headshot */
@@ -50,6 +57,11 @@ background-color: #201f1f;
 .w3-container {
 background-color: #201f1f;
 color: white;
+}
+
+.w3-content {
+  color: white;
+  
 }
 
 
@@ -76,7 +88,7 @@ float: right;
   position: relative; /* Declared position allows for location changes */
   /* top: -30px;  Moves the image 2px closer to the top of the page */ */
 
-   */
+
 
 
 
@@ -103,4 +115,24 @@ i {
   padding: 3px;
   background-color: #002171;
   color: white;
+}
+
+#python {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+
+}
+
+#Rlogo {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+
+}
+
+#excel {
+  width: 25px;
+  height: 25px;
+  background: transparent
 }
