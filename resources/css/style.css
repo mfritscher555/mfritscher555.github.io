@@ -118,21 +118,24 @@ i {
 }
 
 #python {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: transparent;
+  object-fit: cover;
 
 }
 
 #Rlogo {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: transparent;
+  object-fit: cover;
 
 }
 
 #excel {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: transparent;
+  object-fit: cover;
 }
