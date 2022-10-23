@@ -157,9 +157,10 @@ i {
 }
 
 .blog-box{
-  width:350px;
+  width:1000px;
+  height:auto;
   color: white;
-  background-color: transparent;
+  background-color: #201f1f;
   margin: 20px
 }
 
@@ -181,4 +182,17 @@ i {
   padding: 30px;
   display: flex;
   flex-direction: column;
+}
+
+code {
+  background-color: white;
+  color: #1b1b1b;
+}
+
+
+pre code {
+  background-color: #5472d3;
+  border: 1px solid #002171;
+  display: block;
+  padding: 20px;
 }
