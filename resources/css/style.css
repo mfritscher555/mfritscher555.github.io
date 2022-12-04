@@ -179,6 +179,8 @@ i {
 .code {
   background-color: white;
   color: #1b1b1b;
+  width: 100%;
+
 }
 
 
@@ -186,5 +188,10 @@ pre code {
   background-color: #0d47a1;
   border: 1px solid #002171;
   display: block;
+  block-size: fit-content;
   padding: 20px;
+  overflow: auto;
+  word-wrap: break-word;
+  text-align: left;
+  /* width:fit-content; */
 }
