@@ -33,10 +33,35 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 <!-- Blog Container -->
 
-<div class="blog-container"> 
+<div class="blog-container">
 
   <div class="blog-box">
-    <h2> CaPitaLizatIon is IMPORTANT - Looping in Python</h2>
+    <h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
+<p>~ 9 December 2022 ~</p>
+<p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
+<p>The inspiration for the application sprouted from when I was trying to learn more about Object-Oriented programming. I began learning about classes in Python and how they can be used. In a practice file, I created different classes of shapes -- I gave each shapes unique attributes. For example, I created simple formulas that would calculate a circle&#39;s area and circumference, given its radius.</p>
+<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, radius)</span></span>:
+        <span class="hljs-keyword">self</span>.radius = radius
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">area</span><span class="hljs-params">(radius)</span></span>:
+        value = pi * <span class="hljs-keyword">self</span>.radius ** <span class="hljs-number">2</span>
+        <span class="hljs-keyword">return</span> value
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">circumference</span><span class="hljs-params">(radius)</span></span>:
+        value = <span class="hljs-number">2</span> * pi * <span class="hljs-keyword">self</span>.radius
+        <span class="hljs-keyword">return</span> value
+</code></pre>
+<p>I then created a web application that would accept a radius as an input, and would output the area and circumference as outputs. Though these calculations are simple, the focus on the project was learning <em>how</em> to implement this function in a way that is user-friendly. Here is a link to the tool in its current state: </p>
+<p><a href="https://hello-app-370916.uc.r.appspot.com/">https://hello-app-370916.uc.r.appspot.com/</a></p>
+<p>I then had to refactor my code such that the functions could be called within the Flask framework. 
+The code can be found on my GitHub page <a href="https://github.com/mfritscher555/webapp">here</a></p>
+<h2 id="learning-curves">Learning Curves</h2>
+<p>Learning the sytnax relevant to Flask was somewhat difficult, given that it is a brand-new package to me. It was an extremely rewarding feeling to finally enter an input into the box and generate an output.</p>
+
+<hr>
+    <h1> CaPitaLizatIon is IMPORTANT - Looping in Python</h1>
+    <p> ~ 21 October 2022</p>
     <p>Today, I was attempting to iterate through a list and a dictionary and identify where elements in the list matched. From there, the goal was to create a new list, using the values from the dictionary to get a list of appropriate matching codes. Here is an example of what I was attempting to do:</p>
     <pre><code> 
       list = ['Apple', 'Banana', 'Orange', 'Nectarine', 'Pear', 'Apricot']
@@ -64,11 +89,7 @@ To accomplish this, I wrote a for loop similar to the one below. It is not optim
                   new_list.append(value)</code></pre>
 <p>The desired output could not be obtained if there were discrepancies with the casing. Differences in the casing would cause the <code>if i in dict</code> clause to evaluate to FALSE for any element that does not match the casing exactly with the dictionary.</p>
 <br>
-      <span> 21 October 2022 </span>
     </div>
-
-
-
   </div>
 </div>
 
