@@ -33,6 +33,7 @@ background-color: #5472d3;
 color: white;
 margin-top: 75px;
 text-align: center;
+width:justify;
 }
 
 br {
@@ -164,6 +165,8 @@ i {
   margin: 20px
 }
 
+
+
 .blog-img{
   width:100%;
   height: auto;
@@ -194,4 +197,20 @@ pre code {
   word-wrap: break-word;
   text-align: left;
   /* width:fit-content; */
+}
+
+.project-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  flex-wrap: wrap;
+}
+
+.project-box{
+  width:80%;
+  height:auto;
+  color: white;
+  background-color: #201f1f;
+  margin: 20px
 }

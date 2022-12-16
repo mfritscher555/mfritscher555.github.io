@@ -4,4 +4,4 @@ In statistics classes in college, most of the curiculum revolves around the norm
 
 ## Framing the Problem
 
-
+Count data...
