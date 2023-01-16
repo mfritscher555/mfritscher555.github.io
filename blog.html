@@ -82,8 +82,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
                     trimmedFileName2 = fullFileName2[<span class="hljs-number">-14</span>:].split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>].split(<span class="hljs-string">'.'</span>)[<span class="hljs-number">0</span>]
     
                     <span class="hljs-comment"># Assuming inputs have same year and quarter...</span>
-                    quarters = [str.upper(fullFileName1.split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])]
-                    loweryear = int(quarters[<span class="hljs-number">0</span>].split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>]) - <span class="hljs-number">3</span>
+                    quarters = [<span class="hljs-built-in">str</span>.upper(fullFileName1.split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])]
+                    loweryear = <span class="hljs-built-in">int</span>(quarters[<span class="hljs-number">0</span>].split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>]) - <span class="hljs-number">3</span>
                     upperyear = loweryear + <span class="hljs-number">4</span>
     
                     <span class="hljs-comment"># date</span>
@@ -109,7 +109,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
                         window.close()
                         <span class="hljs-keyword">break</span>
     
-                    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                    <span class="hljs-keyword">except</span> <span class="hljs-built-in">Exception</span> <span class="hljs-keyword">as</span> e:
                         sg.popup(e)
                         <span class="hljs-keyword">continue</span>
                     <span class="hljs-keyword">break</span>
@@ -124,10 +124,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
         <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">firstWindow</span><span class="hljs-params">()</span>:</span>
     
             layout = [
-                [sg.Text(<span class="hljs-string">"Input your local db server name here:"</span>), sg.Input(key=<span class="hljs-string">"-SERVER-"</span>)],
-                [sg.Text(<span class="hljs-string">"Input your Database name here:"</span>), sg.Input(key=<span class="hljs-string">"-DB-"</span>)],
-                [sg.Text(<span class="hljs-string">"Input your local db USERNAME here:"</span>), sg.Input(key=<span class="hljs-string">"-UID-"</span>)],
-                [sg.Text(<span class="hljs-string">"Input your local db PASSWORD here: NOT SECURE"</span>), sg.InputText(<span class="hljs-string">""</span>,key=<span class="hljs-string">"-password-"</span>, password_char=<span class="hljs-string">'*'</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db server name here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-SERVER-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your Database name here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-DB-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db USERNAME here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-UID-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db PASSWORD here: NOT SECURE"</span>), sg.InputText(<span class="hljs-string">""</span>,<span class="param">key</span>=<span class="hljs-string">"-password-"</span>, <span class="param">password_char</span>=<span class="hljs-string">'*'</span>)],
                 [sg.Button(<span class="hljs-string">"Enter"</span>), sg.Button(<span class="hljs-string">"I don't have a local DB"</span>)],
                 [sg.Exit()] ]
     
@@ -154,7 +154,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
                     <span class="hljs-keyword">else</span>:
                         <span class="hljs-keyword">break</span>
                     window.close()
-                <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                <span class="hljs-keyword">except</span> <span class="hljs-built-in">Exception</span> <span class="hljs-keyword">as</span> e:
                     sg.popup(e)
                     <span class="hljs-keyword">continue</span>
                 <span class="hljs-keyword">break</span>
