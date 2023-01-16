@@ -188,8 +188,8 @@ i {
 
 
 pre code {
-  background-color: #0d47a1;
-  border: 1px solid #002171;
+  background-color: black;
+  border: 1px solid black;
   display: block;
   block-size: fit-content;
   padding: 20px;
@@ -213,4 +213,41 @@ pre code {
   color: white;
   background-color: #201f1f;
   margin: 20px
+}
+
+.hljs-comment{
+  color: #5472d3;
+}
+
+.hljs-keyword{
+  color:#EF6D00;
+}
+
+.hljs-string{
+  color: green;
+}
+
+.hljs-function{
+  color:#F1CC0E
+}
+
+.hljs-number{
+  color: #0EF1EA;
+}
+
+.other-keyword{
+  color: #C40EF1;
+}
+
+.param{
+  color: #9F213C;
+  font-weight: bold;
+}
+
+.hljs-built-in{
+  color: #2B38F9;
+}
+
+.output-code{
+  color: #00FF0C;
 }

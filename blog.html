@@ -88,10 +88,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     
                     <span class="hljs-comment"># date</span>
                     conditions = [
-                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q1'</span>),
-                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q2'</span>),
-                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q3'</span>),
-                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q4'</span>)
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q1'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q2'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q3'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q4'</span>)
                     ]
     
                     choices = [<span class="hljs-string">'-04-01'</span>, <span class="hljs-string">'-07-01'</span>, <span class="hljs-string">'-10-01'</span>, <span class="hljs-string">'-01-01'</span>]
@@ -101,9 +101,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     
                     <span class="hljs-keyword">try</span>:
     
-                        func1(inputfile=inputfile1, quarters=quarters, loweryear=loweryear, upperyear=upperyear, date=date, conn_16=conn_str_16)
-                        func2(inputfile=inputfile2, quarters=quarters, loweryear=loweryear, upperyear=upperyear, date=date, conn_16=conn_str_16)
-                        func3(inputfile1=inputfile1, inputfile2=inputfile2,quarters=quarters, conn_16=conn_str_16)
+                        <span class="hljs-function"> func1</span>(<span class="param">inputfile</span>=inputfile1, <span class="param">quarters</span>=quarters, <span class="param">loweryear</span>=loweryear, <span class="param">upperyear</span>=upperyear, <span class="param">date</span>=date, <span class="param">conn_16</span>=conn_str_16)
+                        <span class="hljs-function"> func2</span>(<span class="param">inputfile</span>=inputfile2, <span class="param">quarters</span>=quarters, <span class="param">loweryear</span>=loweryear, <span class="param">upperyear</span>=upperyear, <span class="param">date</span>=date, <span class="param">conn_16</span>=conn_str_16)
+                        <span class="hljs-function"> func3</span>(<span class="param">inputfile1</span>=inputfile1, <span class="param">inputfile2</span>=inputfile2,<span class="param">quarters</span>=quarters, <span class="param">conn_16</span>=conn_str_16)
     
                         <span class="hljs-comment"># clsoes the window once the program is done</span>
                         window.close()
@@ -147,10 +147,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
                         <span class="hljs-keyword">global</span> conn_str_16 <span class="hljs-comment"># so it can be accessed in the mainFunction</span>
                         conn_str_16 = pyodbc.connect(<span class="hljs-string">'DRIVER={ODBC Driver 17 for SQL Server};SERVER='</span>+server+<span class="hljs-string">';DATABASE='</span>+database+<span class="hljs-string">';UID='</span>+username+<span class="hljs-string">';PWD='</span>+password)
                         <span class="hljs-comment"># cursor_16 = conn_str_16.cursor()</span>
-                        mainFunction()
+                        <span class="hljs-function">mainFunction()</span>
                     <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"I don't have a local DB"</span>:
                         conn_str_16 = <span class="hljs-keyword">None</span>
-                        mainFunction()
+                        <span class="hljs-function">mainFunction()</span>
                     <span class="hljs-keyword">else</span>:
                         <span class="hljs-keyword">break</span>
                     window.close()
@@ -161,21 +161,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             window.close()
     
     
-        firstWindow()
+        <span class="hljs-function">firstWindow()</span>
     </code></pre>
+    <hr>
+
+
     <h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
 <p>~ 9 December 2022 ~</p>
 <p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
 <p>The inspiration for the application sprouted from when I was trying to learn more about Object-Oriented programming. I began learning about classes in Python and how they can be used. In a practice file, I created different classes of shapes -- I gave each shapes unique attributes. For example, I created simple formulas that would calculate a circle&#39;s area and circumference, given its radius.</p>
-<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>, radius)</span></span>:
+<pre><code class="lang-py"><span class="hljs-class">
+<span class="hljs-keyword">class</span> Circle:
+    <span class="hljs-keyword">def</span> <span class="other-keyword">__init__</span>(<span class="hljs-keyword">self</span>, radius)</span></span>:
         <span class="hljs-keyword">self</span>.radius = radius
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">area</span><span class="hljs-params">(radius)</span></span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-function">area</span>(<span class="param">radius</span>):
         value = pi * <span class="hljs-keyword">self</span>.radius ** <span class="hljs-number">2</span>
         <span class="hljs-keyword">return</span> value
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">circumference</span><span class="hljs-params">(radius)</span></span>:
+    <span class="hljs-keyword">def</span> <span class="hljs-function">circumference</span>(<span class="param">radius</span>):
         value = <span class="hljs-number">2</span> * pi * <span class="hljs-keyword">self</span>.radius
         <span class="hljs-keyword">return</span> value
 </code></pre>
@@ -191,28 +195,28 @@ The code can be found on my GitHub page <a href="https://github.com/mfritscher55
     <p> ~ 21 October 2022</p>
     <p>Today, I was attempting to iterate through a list and a dictionary and identify where elements in the list matched. From there, the goal was to create a new list, using the values from the dictionary to get a list of appropriate matching codes. Here is an example of what I was attempting to do:</p>
     <pre><code> 
-      list = ['Apple', 'Banana', 'Orange', 'Nectarine', 'Pear', 'Apricot']
-      dict = {'apple':1000,'banana':1100,'pear':1200,'nectarine':1500,'apricot':9999,'strawberry':1600, 'orange':1700}
+sampleList = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Nectarine'</span>, <span class="hljs-string">'Pear'</span>, <span class="hljs-string">'Apricot'</span>]
+sampleDict = {<span class="hljs-string">'apple'</span>:<span class="hljs-number">1000</span>,<span class="hljs-string">'banana'</span>:<span class="hljs-number">1100</span>,<span class="hljs-string">'pear'</span>:<span class="hljs-number">1200</span>,<span class="hljs-string">'nectarine'</span>:<span class="hljs-number">1500</span>,<span class="hljs-string">'apricot'</span>:<span class="hljs-number">9999</span>,<span class="hljs-string">'strawberry'</span>:<span class="hljs-number">1600</span>, <span class="hljs-string">'orange'</span>:<span class="hljs-number">1700</span>}
       
-      for i in list:
-          if i in dict:
-              print("True")
-          else:
-              print("False")</code></pre>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sampleList:
+    <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> sampleDict:
+        <span class="hljs-built-in">print</span>(<span class="hljs-string">'True'</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-built-in">print</span>(<span class="hljs-string">'False'</span>)</code></pre>
 <p>This is a simplified version of what I needed to do; however, this snippet of code demonstrates the idea. If I were to run the code above, I would get "False" for each element as an output. This is because capitalization matters in Python, i.e., if the two words that are being compared have differences in capitalization, then they will not be evaluated to being equal. Though this is a simple concept, for long lists, it may not be apparent that there are inconsistencies in casing, until there are problems down the road in your project. To fix this, I simply needed to make both the list and dictionary be in the same case.
 This is where list comprehension came in handy! I ensured that every element in the list was the same as the cases of each key in the dictionary. I added in this line of code to accomplish this:</p>
-<pre><code>list = [x.casefold() for x in list]</code></pre>
+<pre><code>sampleList = [x.casefold() <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> sampleList]</code></pre>
 <p>I could have used any number of case functions; however, I felt it was best to use casefold() and have Python ignore casing for the list entirely. I used a similar list comprehension to accomplish the task for the dictionary. 
 Ultimately, I wanted to return a new list that contained a list of the codes from the original list above. In this case, I want the output to look like:</p>
-<pre><code>>>> [1000, 1100, 1700, 1500, 1200, 9999]</code></pre>
+<pre><code> <span class="output-code"> >>> [1000, 1100, 1700, 1500, 1200, 9999]</span></code></pre>
 <p>Notice that this new list contains the codes for each fruit in the original list, which were obtained from the dictionary dict. 
 To accomplish this, I wrote a for loop similar to the one below. It is not optimized, but does ultimately accomplish the goal to return the appropriate output. The logic initializes an empty list, where the final output will be stored. Then a for loop is used to iterate through each element of the list and check if that value is a value in the dictionary. If there is a match between a value in the list and the dictionary, then that value is appended to new_list. This is the code that generates the desired output: </p>
 <pre><code>
-  new_list = []
-  for i in list:
-      if i in dict:
-          for key, value in dict.items():
-              if i == key:
+new_list = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sampleList:
+    <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> sampleDict:
+        <span class="hljs-keyword">for</span> key, value in sampleDict.items():
+            <span class="hljs-keyword">if</span> i == key:
                   new_list.append(value)</code></pre>
 <p>The desired output could not be obtained if there were discrepancies with the casing. Differences in the casing would cause the <code>if i in dict</code> clause to evaluate to FALSE for any element that does not match the casing exactly with the dictionary.</p>
 <br>
