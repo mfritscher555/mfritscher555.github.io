@@ -34,8 +34,135 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <!-- Blog Container -->
 
 <div class="blog-container">
-
   <div class="blog-box">
+    <h1 id="developing-a-desktop-application">Developing a Desktop Application</h1>
+    <p>~ 16 January 2023</p>
+    <p>Using the framework PySimpleGUI, I created a desktop application for my Graduate Assistantship position. For the backend, which I had already written, I refactored the scripts such that they could be called as functions within the PySimpleGUI framework. </p>
+    <p>PySimpleGUI does exactly what its name implies - it provides a way to create a user interface in a simple manner. The goal of my program was to accept two files as inputs, do back-end calculations (which is beyond the scope of this blog) and return a folder with the outputs. In the case of this app, two Excel files are to be accepted as inputs, and 5 Excel files are returned as outputs. </p>
+    <p>In basic Python programming, the <code>input()</code> function is used to accept user inputs. Similarly, using the <code>PySimpleGUI</code> package, you can accept inputs in a much more user-friendly manner. Below is the code for the front-end of the app.</p>
+    <p>The second function in this script creates the prompts for the first window. This window accepts inputs that connect to a user's local DB. However, this is an optional step. Once either the "Enter" button or "I don't have a local DB" buttons are pressed, the first function is then run. This function then accepts the inputs for the functions in the back-end; once the "Enter" button is pressed, the program runs and terminates once finished. The output files are put into a folder, and if the user inputted local DB information, the tables are created there as well.</p>
+    <pre><code class="lang-py"><span class="hljs-comment">## DESKTOP APPLICATION VERSION</span>
+    
+    <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    
+        <span class="hljs-comment"># ---------------imports---------------</span>
+        <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+        <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+        <span class="hljs-keyword">import</span> PySimpleGUI <span class="hljs-keyword">as</span> sg
+        <span class="hljs-keyword">import</span> pyodbc
+        <span class="hljs-keyword">from</span> functions <span class="hljs-keyword">import</span> func1, func2, func3
+    
+    
+        <span class="hljs-comment">## ---------------------------------- SECOND WINDOW --------------------------------------------------------------</span>
+        <span class="hljs-comment">## Once the user has input local DB information (or skipped that step), they will be brought to this window, which contains</span>
+        <span class="hljs-comment">## the main functionality of the app</span>
+    
+    
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mainFunction</span><span class="hljs-params">()</span>:</span>
+    
+            layout = [
+                        [sg.Text(<span class="hljs-string">"Welcome to my Sample App "</span>)],
+                        [sg.Text(<span class="hljs-string">"Input first input file here:"</span>), sg.Input(key=<span class="hljs-string">"-Input1-"</span>), sg.FileBrowse()],
+                        [sg.Text(<span class="hljs-string">"Input seconf input file here:"</span>), sg.Input(key=<span class="hljs-string">"-Input2-"</span>), sg.FileBrowse()],
+                        [sg.Exit(), sg.Button(<span class="hljs-string">"Generate Output"</span>)], 
+            ]
+    
+            window = sg.Window(<span class="hljs-string">"Desktop Application"</span>, layout)
+    
+            <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+                event, values = window.read()
+                <span class="hljs-keyword">if</span> event <span class="hljs-keyword">in</span> (sg.WINDOW_CLOSED, <span class="hljs-string">"Exit"</span>):
+                    window.close()
+                    <span class="hljs-keyword">break</span>
+                <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"Generate Output"</span>:
+                    fullFileName1 = values[<span class="hljs-string">"-Input1-"</span>]
+                    trimmedFileName1 = fullFileName1[<span class="hljs-number">-14</span>:].split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>].split(<span class="hljs-string">'.'</span>)[<span class="hljs-number">0</span>]
+    
+                    fullFileName2 = values[<span class="hljs-string">"-Input2-"</span>]
+                    trimmedFileName2 = fullFileName2[<span class="hljs-number">-14</span>:].split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>].split(<span class="hljs-string">'.'</span>)[<span class="hljs-number">0</span>]
+    
+                    <span class="hljs-comment"># Assuming inputs have same year and quarter...</span>
+                    quarters = [str.upper(fullFileName1.split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])]
+                    loweryear = int(quarters[<span class="hljs-number">0</span>].split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>]) - <span class="hljs-number">3</span>
+                    upperyear = loweryear + <span class="hljs-number">4</span>
+    
+                    <span class="hljs-comment"># date</span>
+                    conditions = [
+                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q1'</span>),
+                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q2'</span>),
+                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q3'</span>),
+                        quarters[<span class="hljs-number">0</span>].__contains__(<span class="hljs-string">'Q4'</span>)
+                    ]
+    
+                    choices = [<span class="hljs-string">'-04-01'</span>, <span class="hljs-string">'-07-01'</span>, <span class="hljs-string">'-10-01'</span>, <span class="hljs-string">'-01-01'</span>]
+                    date = np.select(conditions, choices)
+                    inputfile1 = pd.read_excel(values[<span class="hljs-string">"-Input1-"</span>])
+                    inputfile2 = pd.read_excel(values[<span class="hljs-string">"-Input2-"</span>])
+    
+                    <span class="hljs-keyword">try</span>:
+    
+                        func1(inputfile=inputfile1, quarters=quarters, loweryear=loweryear, upperyear=upperyear, date=date, conn_16=conn_str_16)
+                        func2(inputfile=inputfile2, quarters=quarters, loweryear=loweryear, upperyear=upperyear, date=date, conn_16=conn_str_16)
+                        func3(inputfile1=inputfile1, inputfile2=inputfile2,quarters=quarters, conn_16=conn_str_16)
+    
+                        <span class="hljs-comment"># clsoes the window once the program is done</span>
+                        window.close()
+                        <span class="hljs-keyword">break</span>
+    
+                    <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                        sg.popup(e)
+                        <span class="hljs-keyword">continue</span>
+                    <span class="hljs-keyword">break</span>
+    
+    
+                window.close()
+    
+    
+    
+    <span class="hljs-comment">#### --------------------------------- Connecting to the user's local db -------------------------------------------</span>
+    
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">firstWindow</span><span class="hljs-params">()</span>:</span>
+    
+            layout = [
+                [sg.Text(<span class="hljs-string">"Input your local db server name here:"</span>), sg.Input(key=<span class="hljs-string">"-SERVER-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your Database name here:"</span>), sg.Input(key=<span class="hljs-string">"-DB-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db USERNAME here:"</span>), sg.Input(key=<span class="hljs-string">"-UID-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db PASSWORD here: NOT SECURE"</span>), sg.InputText(<span class="hljs-string">""</span>,key=<span class="hljs-string">"-password-"</span>, password_char=<span class="hljs-string">'*'</span>)],
+                [sg.Button(<span class="hljs-string">"Enter"</span>), sg.Button(<span class="hljs-string">"I don't have a local DB"</span>)],
+                [sg.Exit()] ]
+    
+            window = sg.Window(<span class="hljs-string">"Connection to Local DB"</span>, layout)
+    
+            <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+                <span class="hljs-keyword">try</span>:
+                    event, values = window.read()
+                    <span class="hljs-keyword">if</span> event <span class="hljs-keyword">in</span> (sg.WINDOW_CLOSED, <span class="hljs-string">"Exit"</span>):
+                        window.close()
+                        <span class="hljs-keyword">break</span>
+                    <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"Enter"</span>:
+                        server = values[<span class="hljs-string">"-SERVER-"</span>]
+                        database = values[<span class="hljs-string">"-DB-"</span>]
+                        username = values[<span class="hljs-string">"-UID-"</span>]
+                        password = values[<span class="hljs-string">"-password-"</span>]
+                        <span class="hljs-keyword">global</span> conn_str_16 <span class="hljs-comment"># so it can be accessed in the mainFunction</span>
+                        conn_str_16 = pyodbc.connect(<span class="hljs-string">'DRIVER={ODBC Driver 17 for SQL Server};SERVER='</span>+server+<span class="hljs-string">';DATABASE='</span>+database+<span class="hljs-string">';UID='</span>+username+<span class="hljs-string">';PWD='</span>+password)
+                        <span class="hljs-comment"># cursor_16 = conn_str_16.cursor()</span>
+                        mainFunction()
+                    <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"I don't have a local DB"</span>:
+                        conn_str_16 = <span class="hljs-keyword">None</span>
+                        mainFunction()
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-keyword">break</span>
+                    window.close()
+                <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+                    sg.popup(e)
+                    <span class="hljs-keyword">continue</span>
+                <span class="hljs-keyword">break</span>
+            window.close()
+    
+    
+        firstWindow()
+    </code></pre>
     <h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
 <p>~ 9 December 2022 ~</p>
 <p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
