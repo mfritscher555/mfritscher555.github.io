@@ -183,6 +183,7 @@ i {
   background-color: white;
   color: #1b1b1b;
   width: 100%;
+  font-family: 'Courier New', Courier, monospace;
 
 }
 
@@ -214,6 +215,12 @@ pre code {
   background-color: #201f1f;
   margin: 20px
 }
+
+
+
+
+/* Changing colors and properties of different keywords of code blocks*/
+
 
 .hljs-comment{
   color: #5472d3;
