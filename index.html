@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>About Me</title>
+<title>Home</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
 <link rel="stylesheet" href="./resources/css/style.css">
 <script src="https://kit.fontawesome.com/8add67db46.js" crossorigin="anonymous"></script>
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 </style>
 </head>
 <!-- <body class="w3-light-grey"> -->
@@ -19,7 +17,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 
 
 <!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
+<div class="page-container">
 
 
     <!-- Nav bar -->
@@ -42,7 +40,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <div class="w3-row-padding">
   
     <!-- Left Column -->
-    <div class="w3-third">
+    <div class="left-column">
     
       <div class="w3-black w3-text-white w3-card-4">
         <div class="w3-display-container">
@@ -112,15 +110,15 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     </div>
 
     <!-- Right Column -->
-    <div class="w3-twothird">
+    <div class="right-column">
     
       <div class="w3-container w3-card w3-201f1f w3-margin-bottom">
         <div class="w3-container">
-            <h2 class="w3-text-white w3-padding-16">About Me</h2>
+            <h2 class="titles">About Me</h2>
             <br>
             <h3>Personal Mission Statement: </h3> 
             <br>
-            <h5>To use data science and analytics to produce practical and impactful business solutions.</h5>
+            <p class="mission-statement">To use data science and analytics to produce practical and impactful business solutions.</p>
             <br>
 
 
@@ -129,17 +127,17 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
                 The purpose of this website is to showcase and document the projects that I have worked on during my time as a Graduate student. </p>
                 <hr>
         </div>
-        <h2 class="w3-text-white w3-padding-16"><i class="fa-solid fa-briefcase fa-fw"></i>Work Experience</h2>
+        <h2 class="titles"><i class="fa-solid fa-briefcase fa-fw"></i>Work Experience</h2>
         <div class="w3-container">
-          <h5 class="w3-201f1f"><b>Graduate Assistant</b></h5>
-          <h6 class="w3-text-white"><i class="fa fa-calendar fa-fw w3-margin-right"></i>July 2022 - <span class="w3-tag w3-round">Current</span></h6>
+          <h3 class="job-titles">Graduate Assistant</h3>
+          <h4 class="date-range">July 2022 - <span class="w3-tag w3-round">Current</span></h4>
           <p>I am currently a Graduate Assistant at LSU, specifically, the Center
               for Analytics & Research in Transportation Safety. I am part of the Analytics team where I use SQL, Python, and Tableau to conduct data analysis. My most recent project involved a Data Integration project, in which I wrote a Python script to automatically match records from the CARTS database to a dataset provided by the Louisiana State Police.</p>
           <hr>
         </div>
         <div class="w3-container">
-          <h5 class="w3-201f1f"><b>Beer Guide - Abita Brewing Co.</b></h5>
-          <h6 class="w3-text-white"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2021 - May 2022</h6>
+          <h3 class="job-titles">Beer Guide - Abita Brewing Co.</h3>
+          <h4 class="date-range"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2021 - May 2022</h4>
           <p> I ensured top-quality service is delivered to patrons by informing guests of the available craft-beverages and helping them find a
             beer that best suits their tastes and preferences. My main roles included being a tour-guide of the Abita Brewery, a bartender in
             the taproom on-site, and responsible for the merchandise sales; all of which required high levels of communication skills in both
@@ -155,38 +153,37 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       </div>
 
       <div class="w3-container w3-card w3-201f1f">
-        <h2 class="w3-text-white w3-padding-16"> <i class="fa-solid fa-graduation-cap"></i> Education</h2>
+        <h2 class="titles"> <i class="fa-solid fa-graduation-cap"></i> Education</h2>
         <div class="w3-container">
-          <h5 class="w3-text-white"><b>M.S. Analytics - Information Systems & Decision Sciences<br>
-            Lousiana State University </b></h5>
+          <h3 class="job-titles">M.S. Analytics - Information Systems & Decision Sciences<br>
+            Lousiana State University</h3>
             <p>Relevant Coursework: <br>
                 Python & Machine Learning, Database Management with SQL, Data Mining/Analytical Tools,
                 Advanced Statistical Analysis for Research, Analytics Methods, Survey of Operations Research: Stochastic Methods, 
             Visual Analytics with Tableau, Forecasting in Business</p>
-            <!-- <img id="lsu_isds" src="./resources/images/lsu_isds.png" alt="lsu_isds"> -->
-          <h6 class="w3-text-white"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2023</h6>
+          <h4 class="date-range"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2023</h4>
           <hr>
         </div>
         <div class="w3-container">
-          <h5 class="w3-text-white"><b>B.S. Economics - International Trade & Finance, <i>  Summa Cum Laude</i><br>
-             Lousiana State University </b></h5>
+          <h3 class="job-titles">B.S. Economics - International Trade & Finance, <i>  Summa Cum Laude</i><br>
+             Lousiana State University</h3>
              <p>Relevant Coursework: <br>
                 International Trade, International Finance, Game Theory and Applications, Introduction to
                 Econometrics, Aggregate Economic Analysis, Intermediate Microeconomic Theory, Introduction to Programming in Business -
                 Python, Management Across Cultures, Business Statistics & Analytics I-II, Money Banking & Macroeconomic Activity, Business
                 Calculus & Economic Applications, Introduction to International Politics, Principles of Finance</p>
-          <h6 class="w3-text-white"><i class="fa fa-calendar fa-fw w3-margin-right"></i>December 2021</h6>
+          <h4 class="date-range"><i class="fa fa-calendar fa-fw w3-margin-right"></i>December 2021</h4>
           <hr>
         </div>
         <div class="w3-container">
-          <h5 class="w3-text-white"><b>Study Abroad, Spanish <br> 
-            La Universidad de Granada</b></h5>
+          <h3 class="job-titles">Study Abroad, Spanish <br> 
+            La Universidad de Granada</h3>
             <p>Relevant coursework: <br>
                 Advanced Readings on Spanish Civilizations, Latin American Literature, Spanish Literary Analysis,
                 Spanish Oral Communication, Spanish Language & Culture, Spanish Grammar and Composition</p>
                 <!-- <img id="granada" src="./resources/images/granada.png" alt="granada"> -->
             
-          <h6 class="w3-text-white"><i class="fa fa-calendar fa-fw w3-margin-right"></i>July 2019</h6>
+          <h4 class="date-range"><i class="fa fa-calendar fa-fw w3-margin-right"></i>July 2019</h4>
         <br>
         </div>
       </div>

@@ -1,9 +1,14 @@
 /* This is where the css code will go */
 
+html,body,h1,h2,h3,h4,h5,h6,p {font-family: "Montserrat", sans-serif}
+
+
+
 
 body {
   background-color: #1b1b1b; 
 }
+
 
 
 /* Defining the navbar; z-index brings nav bar to the front */
@@ -26,6 +31,7 @@ padding: 10px 20px;
 text-decoration: none;
 color: white;
 width: 100%;
+font-family: "Montserrat", sans-serif;
 }
 
 .banner {
@@ -33,7 +39,25 @@ background-color: #5472d3;
 color: white;
 margin-top: 75px;
 text-align: center;
-width:justify;
+width:100%;
+font-family: "Montserrat", sans-serif;
+font-weight: bold;
+}
+
+
+
+.left-column {
+width: 33.33%;
+float: left;
+padding-left: 40px;
+padding-right: 10px;
+}
+
+.right-column {
+  width: 66.66%;
+  float: right;
+  padding-left: 10px;
+  padding-right: 40px;
 }
 
 br {
@@ -51,6 +75,9 @@ filter: drop-shadow(1px 1px 1px black);
 background-color: #201f1f;
 }
 
+.w3-content.w3-margin-top{
+  max-width: 1400px;
+}
 .w3-tag.w3-round {
   background-color:#5472d3;
 }
@@ -74,6 +101,34 @@ background-color: #201f1f;
 .w3-container.w3-card.w3-black {
 background-color: #201f1f;
 }
+
+.titles {
+  padding-top: 16px;
+  font-family: "Montserrat", sans-serif;
+
+}
+
+h3{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.date-range{
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+.mission-statement{
+  font-size: 18px;
+  font-style: italic;
+}
+
+p{
+  font-size: 16px;
+}
+
+
 
 
 /* #granada {
