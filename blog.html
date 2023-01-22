@@ -33,10 +33,10 @@
 <div class="blog-container">
   <div class="blog-box">
     <h1 id="developing-a-desktop-application">Developing a Desktop Application</h1>
-    <p>~ 16 January 2023</p>
+    <p class="date-posted">16 January 2023</p>
     <p>Using the framework PySimpleGUI, I created a desktop application for my Graduate Assistantship position. For the backend, which I had already written, I refactored the scripts such that they could be called as functions within the PySimpleGUI framework. </p>
     <p>PySimpleGUI does exactly what its name implies - it provides a way to create a user interface in a simple manner. The goal of my program was to accept two files as inputs, do back-end calculations (which is beyond the scope of this blog) and return a folder with the outputs. In the case of this app, two Excel files are to be accepted as inputs, and 5 Excel files are returned as outputs. </p>
-    <p>In basic Python programming, the <code>input()</code> function is used to accept user inputs. Similarly, using the <code>PySimpleGUI</code> package, you can accept inputs in a much more user-friendly manner. Below is the code for the front-end of the app.</p>
+    <p>In basic Python programming, the <code class="in-line-code">input()</code> function is used to accept user inputs. Similarly, using the <code class="in-line-code">PySimpleGUI</code> package, you can accept inputs in a much more user-friendly manner. Below is the code for the front-end of the app.</p>
     <p>The second function in this script creates the prompts for the first window. This window accepts inputs that connect to a user's local DB. However, this is an optional step. Once either the "Enter" button or "I don't have a local DB" buttons are pressed, the first function is then run. This function then accepts the inputs for the functions in the back-end; once the "Enter" button is pressed, the program runs and terminates once finished. The output files are put into a folder, and if the user inputted local DB information, the tables are created there as well.</p>
     <pre><code class="lang-py"><span class="hljs-comment">## DESKTOP APPLICATION VERSION</span>
     
@@ -164,7 +164,7 @@
 
 
     <h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
-<p>~ 9 December 2022 ~</p>
+<p class="date-posted">9 December 2022</p>
 <p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
 <p>The inspiration for the application sprouted from when I was trying to learn more about Object-Oriented programming. I began learning about classes in Python and how they can be used. In a practice file, I created different classes of shapes -- I gave each shapes unique attributes. For example, I created simple formulas that would calculate a circle&#39;s area and circumference, given its radius.</p>
 <pre><code class="lang-py"><span class="hljs-class">
@@ -189,7 +189,7 @@ The code can be found on my GitHub page <a href="https://github.com/mfritscher55
 
 <hr>
     <h1> CaPitaLizatIon is IMPORTANT - Looping in Python</h1>
-    <p> ~ 21 October 2022</p>
+    <p class="date-posted">21 October 2022</p>
     <p>Today, I was attempting to iterate through a list and a dictionary and identify where elements in the list matched. From there, the goal was to create a new list, using the values from the dictionary to get a list of appropriate matching codes. Here is an example of what I was attempting to do:</p>
     <pre><code> 
 sampleList = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Nectarine'</span>, <span class="hljs-string">'Pear'</span>, <span class="hljs-string">'Apricot'</span>]

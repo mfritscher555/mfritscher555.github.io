@@ -1,61 +1,53 @@
 /* Establishing a common font here */
 
-html,body,h1,h2,h3,h4,h5,h6,p {font-family: "Montserrat", sans-serif}
-
-
-
-body {
-  background-color: #1b1b1b; 
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Montserrat", sans-serif;
 }
 
-
+body {
+  background-color: #1b1b1b;
+}
 
 /* Defining the navbar; z-index brings nav bar to the front */
 .navbar {
-background: #002171;
-position: fixed;
-top: 0;
-width: 100%;
-z-index: 9999; 
+  background: #002171;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 /* Getting the different pages to display across */
 .navbar li {
-display: inline-block;
-padding: 10px 20px;
+  display: inline-block;
+  padding: 10px 20px;
 }
 
 /* Getting rid of the underlines  */
 .navbar a {
-text-decoration: none;
-color: white;
-width: 100%;
-font-family: "Montserrat", sans-serif;
-font-size: 20px;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
 }
 
 .banner {
-background-color: #5472d3;
-color: white;
-margin-top: 75px;
-text-align: center;
-width:100%;
-font-family: "Montserrat", sans-serif;
-font-weight: bold;
-}
-
-
-
-.w3-third {
-
-padding-left: 40px;
-padding-right: 10px;
-}
-
-.w3-twothird {
-
-  padding-left: 10px;
-  padding-right: 40px;
+  background-color: #5472d3;
+  color: white;
+  margin-top: 75px;
+  text-align: center;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
 br {
@@ -73,96 +65,84 @@ br {
 }
 
 .w3-display-container {
-background-color: #201f1f;
+  background-color: #201f1f;
 }
 
-.w3-content.w3-margin-top{
+.w3-content.w3-margin-top {
   max-width: 1400px;
 }
 .w3-tag.w3-round {
-  background-color:#5472d3;
+  background-color: #5472d3;
 }
 
 .w3-container {
-background-color: #201f1f;
-color: white;
+  background-color: #201f1f;
+  color: white;
+}
+
+.w3-third {
+  padding-left: 40px;
+  padding-right: 10px;
+}
+
+.w3-twothird {
+  padding-left: 10px;
+  padding-right: 40px;
 }
 
 .w3-content {
   color: white;
-  
 }
-
 
 .w3-container-w3-card-w3-black-w3-margin-bottom {
-background-color: #201f1f;
+  background-color: #201f1f;
 }
 
-
 .w3-container.w3-card.w3-black {
-background-color: #201f1f;
+  background-color: #201f1f;
 }
 
 .titles {
   padding-top: 16px;
   font-family: "Montserrat", sans-serif;
-
 }
 
-h3{
+h3 {
   font-size: 20px;
   font-weight: bold;
 }
 
-.date-range{
+.date-range {
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
 }
 
-
-.mission-statement{
+.mission-statement {
   font-size: 18px;
   font-style: italic;
 }
 
-p{
+p {
   font-size: 16px;
 }
 
-
-
-
-/* #granada {
-height: 100px; 
-width: 100px;
-float: right;
+a {
+  color: #f1cc0e;
 }
 
-#lsu_isds {
-  height: 74px; 
-  width: 150px;
-  float: right;
-  position: relative; /* Declared position allows for location changes */
-  /* top: -30px;  Moves the image 2px closer to the top of the page */ */
+/* Changing colors of the icons */
 
-
-
-
-
-
- /* Changing colors of the icons */
- 
 .fa-solid.fa-briefcase.fa-fw {
-color: #5472d3;
+  color: #5472d3;
 }
 
 .a-solid.fa-house.fa-fw {
-color:#5472d3;
+  color: #5472d3;
 }
 
 i {
   margin-right: 10px;
-  color:#5472d3;
+  color: #5472d3;
 }
 
 /* Messing with the footer */
@@ -179,7 +159,6 @@ i {
   height: 20px;
   background: transparent;
   object-fit: contain;
-
 }
 
 #Rlogo {
@@ -187,7 +166,6 @@ i {
   height: 20px;
   background: transparent;
   object-fit: contain;
-
 }
 
 #excel {
@@ -204,8 +182,7 @@ i {
   object-fit: contain;
 }
 
-
-.blog-container{
+.blog-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,23 +190,20 @@ i {
   flex-wrap: wrap;
 }
 
-.blog-box{
-  width:80%;
-  height:auto;
+.blog-box {
+  width: 80%;
+  height: auto;
   color: white;
   background-color: #201f1f;
-  margin: 20px
+  margin: 20px;
 }
 
-
-
-.blog-img{
-  width:100%;
+.blog-img {
+  width: 100%;
   height: auto;
 }
 
-
-.blog.text{
+.blog.text {
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -239,10 +213,8 @@ i {
   background-color: white;
   color: #1b1b1b;
   width: 100%;
-  font-family: 'Courier New', Courier, monospace;
-
+  font-family: "Courier New", Courier, monospace;
 }
-
 
 pre code {
   background-color: black;
@@ -256,7 +228,7 @@ pre code {
   /* width:fit-content; */
 }
 
-.project-container{
+.project-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,53 +236,61 @@ pre code {
   flex-wrap: wrap;
 }
 
-.project-box{
-  width:80%;
-  height:auto;
+.project-box {
+  width: 80%;
+  height: auto;
   color: white;
   background-color: #201f1f;
-  margin: 20px
+  margin: 20px;
 }
 
-
-
-
-/* Changing colors and properties of different keywords of code blocks*/
-
-
-.hljs-comment{
+.date-posted {
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-style: italic;
+  font-variant: small-caps;
   color: #5472d3;
 }
 
-.hljs-keyword{
-  color:#EF6D00;
+/* Changing colors and properties of different keywords of code blocks*/
+
+.hljs-comment {
+  color: #5472d3;
 }
 
-.hljs-string{
+.hljs-keyword {
+  color: #ef6d00;
+}
+
+.hljs-string {
   color: green;
 }
 
-.hljs-function{
-  color:#F1CC0E
+.hljs-function {
+  color: #f1cc0e;
 }
 
-.hljs-number{
-  color: #0EF1EA;
+.hljs-number {
+  color: #0ef1ea;
 }
 
-.other-keyword{
-  color: #C40EF1;
+.other-keyword {
+  color: #c40ef1;
 }
 
-.param{
-  color: #9F213C;
+.param {
+  color: #9f213c;
   font-weight: bold;
 }
 
-.hljs-built-in{
-  color: #2B38F9;
+.hljs-built-in {
+  color: #2b38f9;
 }
 
-.output-code{
-  color: #00FF0C;
+.output-code {
+  color: #00ff0c;
+}
+
+.in-line-code {
+  color: #f1cc0e;
 }
