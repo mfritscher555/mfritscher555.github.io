@@ -130,6 +130,11 @@ a {
   color: #f1cc0e;
 }
 
+a:hover {
+  color: #5472d3;
+  font-weight: bold;
+}
+
 /* Changing colors of the icons */
 
 .fa-solid.fa-briefcase.fa-fw {
@@ -249,7 +254,7 @@ pre code {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-style: italic;
   font-variant: small-caps;
-  color: #5472d3;
+  color: #f1cc0e;
 }
 
 /* Changing colors and properties of different keywords of code blocks*/
