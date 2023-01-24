@@ -283,7 +283,7 @@ pre code {
   color: #f1cc0e;
 }
 
-/* Changing colors and properties of different keywords of code blocks*/
+/* Changing colors and properties of different keywords within code blocks*/
 
 .hljs-comment {
   color: #5472d3;
