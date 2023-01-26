@@ -10,6 +10,7 @@ h5,
 h6,
 p {
   font-family: "Montserrat", sans-serif;
+  color: aliceblue;
 }
 
 body {
@@ -68,8 +69,30 @@ ul {
   filter: drop-shadow(1px 1px 1px black);
 }
 
-.w3-display-container {
+.row-padding:after,
+.row-padding:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row-padding > .left-column,
+.row-padding > .right-column,
+.row-padding {
+  padding: 0 8px;
+}
+
+.display-container {
+  position: relative;
   background-color: #201f1f;
+}
+
+.display-bottommiddle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0%);
+  -ms-transform: translate(-50%, 0%);
 }
 
 .w3-content.w3-margin-top {
@@ -79,14 +102,37 @@ ul {
   background-color: #5472d3;
 }
 
-.w3-container {
-  background-color: #201f1f;
-  color: white;
-}
-
-.w3-third {
+.left-column {
   padding-left: 40px;
   padding-right: 10px;
+  float: left;
+  width: 100%;
+  filter: drop-shadow(1px 1px 1px black);
+}
+
+@media (min-width: 601px) {
+  .left-column {
+    width: 33.333333%;
+  }
+}
+
+.container:after,
+.container:before {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  background-color: #201f1f;
+  color: white;
+  padding: 0.01em 16px;
+}
+
+.sub-container {
+  background-color: #201f1f;
+  color: white;
+  padding: 0.01em 16px;
 }
 
 .left-column-title {
@@ -99,20 +145,15 @@ ul {
   margin: 8px 0;
 }
 
-.w3-twothird {
+.right-column {
+  float: right;
+  width: 66.666666%;
   padding-left: 10px;
   padding-right: 40px;
+  filter: drop-shadow(1px 1px 1px black);
 }
 
-.w3-content {
-  color: white;
-}
-
-.w3-container-w3-card-w3-black-w3-margin-bottom {
-  background-color: #201f1f;
-}
-
-.w3-container.w3-card.w3-black {
+.right-card {
   background-color: #201f1f;
 }
 
@@ -226,7 +267,7 @@ i {
   height: auto;
   color: white;
   background-color: #201f1f;
-  margin: 20px;
+  padding: 20px;
 }
 
 .blog-img {
@@ -272,7 +313,8 @@ pre code {
   height: auto;
   color: white;
   background-color: #201f1f;
-  margin: 20px;
+  padding: 20px;
+  filter: drop-shadow(1px, 1px, 1px black);
 }
 
 .date-posted {
