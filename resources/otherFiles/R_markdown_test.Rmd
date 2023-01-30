@@ -1,0 +1,68 @@
+---
+title: "R Markdown Test"
+author: "Matthew Fritscher"
+date: '2023-01-27'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Predicting Inflation/Unemployment
+
+Background on federal funds rate and how it affects inflation/unemployment goes here...
+
+## Loading in the dataset 
+
+```{r}
+df <- econ_data
+summary(df)
+```
+
+Here we can see there are some columns that have a lot of missing values
+
+I want to create a function that fills in the appropriate missing values for unemployment and inflation.
+This function will find the 4 records before and 4 records after and take that average, and fill the missing value with this average.
+
+```{r}
+
+averager <- function (column_name){
+  column_name <- as.list(column_name)
+  return (summary(column_name))
+}
+
+averager(df[["Inflation Rate"]])
+
+
+```
+
+
+
+
+
+```{r}
+
+fill_nas <- function(column_name){
+  column_name <- as.list(column_name)
+  for (x in column_name){
+    if (x == is.na()){
+      x <- 0
+    }
+    else{
+      x <- x
+    }
+  }
+}
+
+```
+
+
+
+
+```{r}
+fill_nas(df[["Inflation Rate"]])
+summary(df[["Inflation Rate"]])
+```
+
+
