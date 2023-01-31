@@ -16,53 +16,114 @@ Background on federal funds rate and how it affects inflation/unemployment goes 
 ## Loading in the dataset 
 
 ```{r}
-df <- econ_data
+
+
+
+df <- read.csv('index.csv')
 summary(df)
 ```
+
+## Data Wrangling
+
 
 Here we can see there are some columns that have a lot of missing values
 
 I want to create a function that fills in the appropriate missing values for unemployment and inflation.
-This function will find the 4 records before and 4 records after and take that average, and fill the missing value with this average.
-
-```{r}
-
-averager <- function (column_name){
-  column_name <- as.list(column_name)
-  return (summary(column_name))
-}
-
-averager(df[["Inflation Rate"]])
-
-
-```
-
-
-
+This function will find the 12 records before and 12 records after and take that average, and fill the missing value with this average.
 
 
 ```{r}
 
-fill_nas <- function(column_name){
-  column_name <- as.list(column_name)
-  for (x in column_name){
-    if (x == is.na()){
-      x <- 0
+
+# Right now the function merely returns the data frame and replaces NAs with Nans
+# Supposed to replaces NAs with the average of its previous 4 and next 4 values
+# The key issue is the na.rm=TRUE 
+
+averager <- function(columnName){
+  emptyVector = c()
+  for (i in (columnName)){
+    if (is.na(i)){
+      i <- 0
+      if (i != 0){
+        emptyVector <- append(emptyVector, i)
+      }
+      else{
+        i <- mean(columnName[i-12], columnName[i+12], na.rm=TRUE)
+        emptyVector <- append(emptyVector, i)
+      }
     }
+
     else{
-      x <- x
+      emptyVector <- append(emptyVector, i)
     }
   }
+  return(emptyVector)
 }
 
 ```
+```{r}
+# # Apply the averager function to the relevant columns
+#
+# looper <- function(columnsVector, startIndex, endIndex){
+#   df_clean <- data.frame(matrix(ncol = length(columnsVector), nrow = 0))
+#   for (column in columnsVector){
+#     res <- averager(df$column[startIndex:endIndex])
+#     newcol <- rep(res, nrow(df_clean))
+#   }
+#   return(df_clean)
+# }
+#
+```
+
+Calling the looper function so that all columns get the missing values replaced in the same manner.
+
+```{r}
+
+# # Setting up the input vector.
+# 
+# colsVec <- colnames(df)
+# 
+# print(looper(colsVec, 43, 904))
 
 
+```
+
+Applying the `averager` function to the appropriate columns
 
 
 ```{r}
-fill_nas(df[["Inflation Rate"]])
-summary(df[["Inflation Rate"]])
+inflationRate <- averager(df$Inflation.Rate[43:904])
+print(length(inflationRate))
+
+unemploymentRate <- averager(df$Unemployment.Rate[43:904])
+print(length(unemploymentRate))
+
+effective_fed <- averager(df$Effective.Federal.Funds.Rate[43:904])
+print(length(effective_fed))
 ```
+
+
+
+
+Now, the missing values beyond the 43rd value have all been replaced with the average of the 4 surrounding values.
+
+## Data Visualizations
+
+```{r}
+
+plot(y=df$Effective.Federal.Funds.Rate, x=df$Year, main="Effective Federal Funds Rate Over Time", ylab="Effective Federal Funds Rate", xlab="Time", col="red")
+```
+```{r}
+
+plot(y=df$Inflation.Rate, x=df$Year, main="Inflation Rate Over Time", ylab="Inflation", xlab="Time", col="blue")
+```
+
+
+```{r}
+
+cor(df$Effective.Federal.Funds.Rate, df$Inflation.Rate, use="complete.obs")
+
+```
+
 
 
