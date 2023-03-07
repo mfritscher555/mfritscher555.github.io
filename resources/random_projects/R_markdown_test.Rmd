@@ -1,0 +1,130 @@
+---
+title: "R Markdown Test"
+author: "Matthew Fritscher"
+date: '2023-01-27'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Predicting Inflation/Unemployment
+
+In times of high inflation, many people may ask the question: what does the central bank do to fight inflation? The Federal Open Markets Committee (FOMC) responds to high inflation by raising the federal funds rate. The federal funds rate, essentially is the interest rate at which banks borrow money from each other. The federal funds rate, therefore, has an effect on all other interest rates in the economy; so if the federal funds rate increases, as do other interest rates. Higher interest rates make it more expensive to borrow money and deincintivizes people from making large purchases. More spending in the economy (and the printing of money) ultimately determines inflation. 
+
+Let's investigate how the past relationship between the federal funds rate and inflation in the past.
+
+## Loading in the dataset 
+
+```{r}
+
+
+
+df <- read.csv('index.csv')
+summary(df)
+```
+
+## Data Wrangling
+
+
+Here we can see there are some columns that have a lot of missing values
+
+I want to create a function that fills in the appropriate missing values for unemployment and inflation.
+This function will find the 12 records before and 12 records after and take that average, and fill the missing value with this average.
+
+
+```{r}
+# This function replaces any missing values in the input columns with the average of the surrounding values
+# while ignoring any missing values in the average calculation.
+
+averager <- function(columnName){
+  emptyVector = c()
+  for (i in (columnName)){
+    if (is.na(i)){
+      i <- 0
+      if (i != 0){
+        emptyVector <- append(emptyVector, i)
+      }
+      else{
+        i <- mean(columnName[i-12], columnName[i+12], na.rm=TRUE)
+        emptyVector <- append(emptyVector, i)
+      }
+    }
+
+    else{
+      emptyVector <- append(emptyVector, i)
+    }
+  }
+  return(emptyVector)
+}
+
+```
+
+Applying the `averager` function to the appropriate columns at the relevant indices.
+
+
+```{r}
+
+library('stringr')
+
+inflationRate <- averager(df$Inflation.Rate[43:904])
+
+unemploymentRate <- averager(df$Unemployment.Rate[43:904])
+
+effective_fed <- averager(df$Effective.Federal.Funds.Rate[43:904])
+
+dateCol <- str_c(df$Year[43:904],'-', df$Month[43:904],'-', + df$Day[43:904])
+
+Year <- df$Year[43:904]
+
+new_df <- data.frame(
+  Inflation.Rate = inflationRate,
+  Unemployment.Rate = unemploymentRate,
+  Effective.Federal.Funds.Rate = effective_fed,
+  Date = dateCol,
+  Year = Year
+)
+
+
+
+```
+
+Now that the desired data frame is cleaned; let's look at some visualizations.
+
+## Data Visualizations
+
+```{r}
+
+plot(y=new_df$Effective.Federal.Funds.Rate, x=new_df$Year, main="Effective Federal Funds Rate Over Time", ylab="Effective Federal Funds Rate", xlab="Time", col="white")
+lines(y=new_df$Effective.Federal.Funds.Rate, x=new_df$Year, col="blue")
+
+lines(y=new_df$Inflation.Rate, x=new_df$Year, col="red")
+
+# legend(x=2,y=2,legend=c("Federal Funds Rate", "Inflation"), fill = c("blue","red"))
+
+
+```
+
+
+
+```{r}
+
+cor(df$Effective.Federal.Funds.Rate, df$Inflation.Rate, use="complete.obs")
+
+```
+
+
+```{r}
+plot(y=new_df$Unemployment.Rate, x=new_df$Year, main="Unemployment Rate Over Time", ylab="Rate", xlab="Time", col="white")
+
+
+lines(y=new_df$Unemployment.Rate, x=new_df$Year, col="red")
+
+
+
+
+```
+
+
+

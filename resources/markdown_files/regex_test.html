@@ -1,0 +1,62 @@
+<h1 id="data-matching-project-learning-regex-along-the-way">
+  Data Matching Project - Learning Regex along the Way
+</h1>
+<h2 id="the-matching-process">The matching process</h2>
+<p>
+  As a part of data matching project, I wanted to be able to display
+  people&#39;s names as accurately as possible. The matching process I used
+  entailed matching a customer ID from one source to another. The interested
+  party wanted to know which customers that the application was unable to match;
+  i.e., any customers that were in one data source but not the other. The final
+  deliverable was to be a list of customer names and customer IDs that were
+  unmatched, so that the interested party could review these transactions.
+  Though customer IDs are usually sufficient to identify these transactions, in
+  the process, it is much more helpful if other information such as name and
+  date are available and accurate.
+</p>
+<h2 id="using-regex">Using Regex</h2>
+<p>
+  Once the matching process was established, regex was used as a way to fix some
+  mistakes in people&#39;s names. For instance, suffixes for some reason got
+  attached to the back of people&#39;s last names in the dataset. For example, a
+  person&#39;s name might display &quot;FRITSCHERJR, MATTHEW&quot; instead of
+  &quot;FRITSCHER JR, MATTHEW&quot; (by the way, I am not a Junior). Using a
+  regular expression allowed me to make such changes. The following expression
+  identifies any names that follow this convention:
+</p>
+<pre><code class="lang-py">pattern = re.compile(r".+\S[<span class="hljs-string">jJ</span>][<span class="hljs-string">rR</span>],.+")
+</code></pre>
+<p>
+  Since there were other errors in people&#39;s names that were yet to be
+  addressed (for example, the occasional symbol instead of a letter), the first
+  part of the expression includes any character (the period denotes this). The
+  &quot;+&quot; indicates that it will match anything up until the character
+  after, which in this case is a non-space character followed by a j or J (and
+  subsequently either an r or R, followed by a ,). The comma is a key part here;
+  the comma allows us to differentiate a suffix versus the instances of
+  &quot;jr&quot; appearing in someone&#39;s name. The &quot;.+&quot; denotes
+  that any amount of characters can follow the comma.
+</p>
+<p>
+  From here, a function was used to replace any instances of people&#39;s name
+  that follow this pattern and fix the name so that a space separates the last
+  name and the suffix. A function similar to one below was written and then
+  called when writing to the final Excel file for the client.
+</p>
+<pre><code class="lang-py">    <span class="hljs-function">def</span> <span class="hljs-title">suffix_fixer</span>(names)</span>:</span>
+        master_list = []
+        <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names:
+            pattern = re.compile(<span class="hljs-string">r".+\S[jJ][rR],.+"</span>)
+            matches = sr_pattern.findall(i)
+            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> matches:
+                i = [sub.replace(<span class="hljs-string">"JR"</span>, <span class="hljs-string">" JR"</span>) <span class="hljs-keyword">for</span> sub <span class="hljs-keyword">in</span> _matches]
+                i = i[<span class="hljs-number">0</span>]
+                master_list.append(i)
+            <span class="hljs-keyword">else</span>:
+                master_list.append(i)
+        <span class="hljs-keyword">return</span> master_list
+</code></pre>
+<p>
+  Being new to regex, there is a lot more to learn; however, I already see that
+  there a lot of applications for using regular expressions.
+</p>
