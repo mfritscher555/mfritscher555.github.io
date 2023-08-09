@@ -2,9 +2,9 @@
 
 When working on a data integration project, I was curious if there was a way to export columns of data based on a calculation using Excel formula logic. This would allow the end-user to view the formulas in the Excel spreadsheet, as opposed to seeing the values without using the calculations. Using `pandas` ExcelWriter, you can!
 
-## Dynamically Chaning Column Labels
+## Dynamically Changing Column Labels
 
-In order to avoid problems when running the application in the future, i.e., if there is the possibility that number of columns, column position, etc will change, it is important to set up a way for the Excel formulas to change automatically to accomadate these sorts of changes. First, create a dictionary of key-value pairs where the keys are the indices from 0 - number of columns and values are the corresponding Excel column labels.
+In order to avoid problems when running the application in the future, i.e., if there is the possibility that number of columns, column position, etc will change, it is important to set up a way for the Excel formulas to change automatically to accommodate these sorts of changes. First, create a dictionary of key-value pairs where the keys are the indices from 0 - number of columns and values are the corresponding Excel column labels.
 
 ```py
 # dynamically change columns labels (pandas index to Excel index)
