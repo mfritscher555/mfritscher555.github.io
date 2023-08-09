@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
+<link rel="stylesheet" href="./resources/css/style.css">
+<script src="https://kit.fontawesome.com/8add67db46.js" crossorigin="anonymous"></script>
+</head>
+<!-- <body class="w3-light-grey"> -->
+
+
+    <!-- Nav bar -->
+    <nav class="navbar">
+      <ul>
+          <li><a href="./index.html">About</a></li>
+          <li><a href="./projects.html">Projects</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+
+      </ul>
+  </nav>
+
+<!-- Banner -->
+  <div class="banner">
+    <h1> Welcome to my Blog! </h1>
+</div>
+
+<!-- Blog Container -->
+
+<div class="blog-container">
+  <div class="blog-box">
+    <p class="date-posted">7 March 2023</p>
+    <h1 id="data-matching-project-learning-regex-along-the-way">
+        Data Matching Project - Learning Regex along the Way
+      </h1>
+      <h2 id="the-matching-process">The matching process</h2>
+      <p>
+        As a part of data matching project, I wanted to be able to display
+        people&#39;s names as accurately as possible. The matching process I used
+        entailed matching a customer ID from one source to another. The interested
+        party wanted to know which customers that the application was unable to match;
+        i.e., any customers that were in one data source but not the other. The final
+        deliverable was to be a list of customer names and customer IDs that were
+        unmatched, so that the interested party could review these transactions.
+        Though customer IDs are usually sufficient to identify these transactions, in
+        the process, it is much more helpful if other information such as name and
+        date are available and accurate.
+      </p>
+      <h2 id="using-regex">Using Regex</h2>
+      <p>
+        Once the matching process was established, regex was used as a way to fix some
+        mistakes in people&#39;s names. For instance, suffixes for some reason got
+        attached to the back of people&#39;s last names in the dataset. For example, a
+        person&#39;s name might display &quot;FRITSCHERJR, MATTHEW&quot; instead of
+        &quot;FRITSCHER JR, MATTHEW&quot; (by the way, I am not a Junior). Using a
+        regular expression allowed me to make such changes. The following expression
+        identifies any names that follow this convention:
+      </p>
+      <pre><code class="lang-py">pattern = re.compile(<span class="hljs-string">r".+\S[jJ][rR],.+"</span>)
+      </code></pre>
+      <p>
+        Since there were other errors in people&#39;s names that were yet to be
+        addressed (for example, the occasional symbol instead of a letter), the first
+        part of the expression includes any character (the period denotes this). The
+        &quot;+&quot; indicates that it will match anything up until the character
+        after, which in this case is a non-space character followed by a j or J (and
+        subsequently either an r or R, followed by a ,). The comma is a key part here;
+        the comma allows us to differentiate a suffix versus the instances of
+        &quot;jr&quot; appearing in someone&#39;s name. The &quot;.+&quot; denotes
+        that any amount of characters can follow the comma.
+      </p>
+      <p>
+        From here, a function was used to replace any instances of people&#39;s name
+        that follow this pattern and fix the name so that a space separates the last
+        name and the suffix. A function similar to one below was written and then
+        called when writing to the final Excel file for the client.
+      </p>
+      <pre><code class="lang-py">    <span class="hljs-function">def</span> <span class="hljs-title">suffix_fixer</span>(names)</span>:</span>
+        master_list = []
+        <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> names:
+            pattern = re.compile(<span class="hljs-string">r".+\S[jJ][rR],.+"</span>)
+            matches = pattern.findall(i)
+            <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> matches:
+                i = [sub.replace(<span class="hljs-string">"JR"</span>, <span class="hljs-string">" JR"</span>) <span class="hljs-keyword">for</span> sub <span class="hljs-keyword">in</span> _matches]
+                i = i[<span class="hljs-number">0</span>]
+                master_list.append(i)
+            <span class="hljs-keyword">else</span>:
+                master_list.append(i)
+        <span class="hljs-keyword">return</span> master_list
+    </code></pre>
+      <p>
+        Being new to regex, there is a lot more to learn; however, I already see that
+        there a lot of applications for using regular expressions.
+      </p>
+      
+    <h1 id="developing-a-desktop-application">Developing a Desktop Application</h1>
+    <p class="date-posted">16 January 2023</p>
+    <p>Using the framework PySimpleGUI, I created a desktop application for my Graduate Assistantship position. For the backend, which I had already written, I refactored the scripts such that they could be called as functions within the PySimpleGUI framework. </p>
+    <p>PySimpleGUI does exactly what its name implies - it provides a way to create a user interface in a simple manner. The goal of my program was to accept two files as inputs, do back-end calculations (which is beyond the scope of this blog) and return a folder with the outputs. In the case of this app, two Excel files are to be accepted as inputs, and 5 Excel files are returned as outputs. </p>
+    <p>In basic Python programming, the <code class="in-line-code">input()</code> function is used to accept user inputs. Similarly, using the <code class="in-line-code">PySimpleGUI</code> package, you can accept inputs in a much more user-friendly manner. Below is the code for the front-end of the app.</p>
+    <p>The second function in this script creates the prompts for the first window. This window accepts inputs that connect to a user's local DB. However, this is an optional step. Once either the "Enter" button or "I don't have a local DB" buttons are pressed, the first function is then run. This function then accepts the inputs for the functions in the back-end; once the "Enter" button is pressed, the program runs and terminates once finished. The output files are put into a folder, and if the user inputted local DB information, the tables are created there as well.</p>
+    <pre><code class="lang-py"><span class="hljs-comment">## DESKTOP APPLICATION VERSION</span>
+    
+    <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    
+        <span class="hljs-comment"># ---------------imports---------------</span>
+        <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+        <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+        <span class="hljs-keyword">import</span> PySimpleGUI <span class="hljs-keyword">as</span> sg
+        <span class="hljs-keyword">import</span> pyodbc
+        <span class="hljs-keyword">from</span> functions <span class="hljs-keyword">import</span> func1, func2, func3
+    
+    
+        <span class="hljs-comment">## ---------------------------------- SECOND WINDOW --------------------------------------------------------------</span>
+        <span class="hljs-comment">## Once the user has input local DB information (or skipped that step), they will be brought to this window, which contains</span>
+        <span class="hljs-comment">## the main functionality of the app</span>
+    
+    
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mainFunction</span><span class="hljs-params">()</span>:</span>
+    
+            layout = [
+                        [sg.Text(<span class="hljs-string">"Welcome to my Sample App "</span>)],
+                        [sg.Text(<span class="hljs-string">"Input first input file here:"</span>), sg.Input(key=<span class="hljs-string">"-Input1-"</span>), sg.FileBrowse()],
+                        [sg.Text(<span class="hljs-string">"Input second input file here:"</span>), sg.Input(key=<span class="hljs-string">"-Input2-"</span>), sg.FileBrowse()],
+                        [sg.Exit(), sg.Button(<span class="hljs-string">"Generate Output"</span>)], 
+            ]
+    
+            window = sg.Window(<span class="hljs-string">"Desktop Application"</span>, layout)
+    
+            <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+                event, values = window.read()
+                <span class="hljs-keyword">if</span> event <span class="hljs-keyword">in</span> (sg.WINDOW_CLOSED, <span class="hljs-string">"Exit"</span>):
+                    window.close()
+                    <span class="hljs-keyword">break</span>
+                <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"Generate Output"</span>:
+                    fullFileName1 = values[<span class="hljs-string">"-Input1-"</span>]
+                    trimmedFileName1 = fullFileName1[<span class="hljs-number">-14</span>:].split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>].split(<span class="hljs-string">'.'</span>)[<span class="hljs-number">0</span>]
+    
+                    fullFileName2 = values[<span class="hljs-string">"-Input2-"</span>]
+                    trimmedFileName2 = fullFileName2[<span class="hljs-number">-14</span>:].split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>].split(<span class="hljs-string">'.'</span>)[<span class="hljs-number">0</span>]
+    
+                    <span class="hljs-comment"># Assuming inputs have same year and quarter...</span>
+                    quarters = [<span class="hljs-built-in">str</span>.upper(fullFileName1.split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])]
+                    loweryear = <span class="hljs-built-in">int</span>(quarters[<span class="hljs-number">0</span>].split(<span class="hljs-string">'_'</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>]) - <span class="hljs-number">3</span>
+                    upperyear = loweryear + <span class="hljs-number">4</span>
+    
+                    <span class="hljs-comment"># date</span>
+                    conditions = [
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q1'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q2'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q3'</span>),
+                        quarters[<span class="hljs-number">0</span>]<span class="other-keyword">.__contains__</span>(<span class="hljs-string">'Q4'</span>)
+                    ]
+    
+                    choices = [<span class="hljs-string">'-04-01'</span>, <span class="hljs-string">'-07-01'</span>, <span class="hljs-string">'-10-01'</span>, <span class="hljs-string">'-01-01'</span>]
+                    date = np.select(conditions, choices)
+                    inputfile1 = pd.read_excel(values[<span class="hljs-string">"-Input1-"</span>])
+                    inputfile2 = pd.read_excel(values[<span class="hljs-string">"-Input2-"</span>])
+    
+                    <span class="hljs-keyword">try</span>:
+    
+                        <span class="hljs-function"> func1</span>(<span class="param">inputfile</span>=inputfile1, <span class="param">quarters</span>=quarters, <span class="param">loweryear</span>=loweryear, <span class="param">upperyear</span>=upperyear, <span class="param">date</span>=date, <span class="param">conn_16</span>=conn_str_16)
+                        <span class="hljs-function"> func2</span>(<span class="param">inputfile</span>=inputfile2, <span class="param">quarters</span>=quarters, <span class="param">loweryear</span>=loweryear, <span class="param">upperyear</span>=upperyear, <span class="param">date</span>=date, <span class="param">conn_16</span>=conn_str_16)
+                        <span class="hljs-function"> func3</span>(<span class="param">inputfile1</span>=inputfile1, <span class="param">inputfile2</span>=inputfile2,<span class="param">quarters</span>=quarters, <span class="param">conn_16</span>=conn_str_16)
+    
+                        <span class="hljs-comment"># clsoes the window once the program is done</span>
+                        window.close()
+                        <span class="hljs-keyword">break</span>
+    
+                    <span class="hljs-keyword">except</span> <span class="hljs-built-in">Exception</span> <span class="hljs-keyword">as</span> e:
+                        sg.popup(e)
+                        <span class="hljs-keyword">continue</span>
+                    <span class="hljs-keyword">break</span>
+    
+    
+                window.close()
+    
+    
+    
+    <span class="hljs-comment">#### --------------------------------- Connecting to the user's local db -------------------------------------------</span>
+    
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">firstWindow</span><span class="hljs-params">()</span>:</span>
+    
+            layout = [
+                [sg.Text(<span class="hljs-string">"Input your local db server name here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-SERVER-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your Database name here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-DB-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db USERNAME here:"</span>), sg.Input(<span class="param">key</span>=<span class="hljs-string">"-UID-"</span>)],
+                [sg.Text(<span class="hljs-string">"Input your local db PASSWORD here: NOT SECURE"</span>), sg.InputText(<span class="hljs-string">""</span>,<span class="param">key</span>=<span class="hljs-string">"-password-"</span>, <span class="param">password_char</span>=<span class="hljs-string">'*'</span>)],
+                [sg.Button(<span class="hljs-string">"Enter"</span>), sg.Button(<span class="hljs-string">"I don't have a local DB"</span>)],
+                [sg.Exit()] ]
+    
+            window = sg.Window(<span class="hljs-string">"Connection to Local DB"</span>, layout)
+    
+            <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+                <span class="hljs-keyword">try</span>:
+                    event, values = window.read()
+                    <span class="hljs-keyword">if</span> event <span class="hljs-keyword">in</span> (sg.WINDOW_CLOSED, <span class="hljs-string">"Exit"</span>):
+                        window.close()
+                        <span class="hljs-keyword">break</span>
+                    <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"Enter"</span>:
+                        server = values[<span class="hljs-string">"-SERVER-"</span>]
+                        database = values[<span class="hljs-string">"-DB-"</span>]
+                        username = values[<span class="hljs-string">"-UID-"</span>]
+                        password = values[<span class="hljs-string">"-password-"</span>]
+                        <span class="hljs-keyword">global</span> conn_str_16 <span class="hljs-comment"># so it can be accessed in the mainFunction</span>
+                        conn_str_16 = pyodbc.connect(<span class="hljs-string">'DRIVER={ODBC Driver 17 for SQL Server};SERVER='</span>+server+<span class="hljs-string">';DATABASE='</span>+database+<span class="hljs-string">';UID='</span>+username+<span class="hljs-string">';PWD='</span>+password)
+                        <span class="hljs-comment"># cursor_16 = conn_str_16.cursor()</span>
+                        <span class="hljs-function">mainFunction()</span>
+                    <span class="hljs-keyword">elif</span> event == <span class="hljs-string">"I don't have a local DB"</span>:
+                        conn_str_16 = <span class="hljs-keyword">None</span>
+                        <span class="hljs-function">mainFunction()</span>
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-keyword">break</span>
+                    window.close()
+                <span class="hljs-keyword">except</span> <span class="hljs-built-in">Exception</span> <span class="hljs-keyword">as</span> e:
+                    sg.popup(e)
+                    <span class="hljs-keyword">continue</span>
+                <span class="hljs-keyword">break</span>
+            window.close()
+    
+    
+        <span class="hljs-function">firstWindow()</span>
+    </code></pre>
+    <hr>
+
+
+    <h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
+<p class="date-posted">9 December 2022</p>
+<p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
+<p>The inspiration for the application sprouted from when I was trying to learn more about Object-Oriented programming. I began learning about classes in Python and how they can be used. In a practice file, I created different classes of shapes -- I gave each shapes unique attributes. For example, I created simple formulas that would calculate a circle&#39;s area and circumference, given its radius.</p>
+<pre><code class="lang-py"><span class="hljs-class">
+<span class="hljs-keyword">class</span> Circle:
+    <span class="hljs-keyword">def</span> <span class="other-keyword">__init__</span>(<span class="hljs-keyword">self</span>, radius)</span></span>:
+        <span class="hljs-keyword">self</span>.radius = radius
+
+    <span class="hljs-keyword">def</span> <span class="hljs-function">area</span>(<span class="param">radius</span>):
+        value = pi * <span class="hljs-keyword">self</span>.radius ** <span class="hljs-number">2</span>
+        <span class="hljs-keyword">return</span> value
+
+    <span class="hljs-keyword">def</span> <span class="hljs-function">circumference</span>(<span class="param">radius</span>):
+        value = <span class="hljs-number">2</span> * pi * <span class="hljs-keyword">self</span>.radius
+        <span class="hljs-keyword">return</span> value
+</code></pre>
+<p>I then created a web application that would accept a radius as an input, and would output the area and circumference as outputs. Though these calculations are simple, the focus on the project was learning <i id="italicize-normal">how</i> to implement this function in a way that is user-friendly. Here is a link to the tool in its current state: </p>
+<p><a href="https://hello-app-370916.uc.r.appspot.com/" target="_blank">Basic Web Application</a></p>
+<p>I then had to refactor my code such that the functions could be called within the Flask framework. 
+The code can be found on my GitHub page <a href="https://github.com/mfritscher555/webapp" target="_blank">here</a></p>
+<h2 id="learning-curves">Learning Curves</h2>
+<p>Learning the syntax relevant to Flask was somewhat difficult, given that it is a brand-new package to me. It was an extremely rewarding feeling to finally enter an input into the box and generate an output.</p>
+
+<hr>
+    <h1> CaPitaLizatIon is IMPORTANT - Looping in Python</h1>
+    <p class="date-posted">21 October 2022</p>
+    <p>Today, I was attempting to iterate through a list and a dictionary and identify where elements in the list matched. From there, the goal was to create a new list, using the values from the dictionary to get a list of appropriate matching codes. Here is an example of what I was attempting to do:</p>
+    <pre><code> 
+sampleList = [<span class="hljs-string">'Apple'</span>, <span class="hljs-string">'Banana'</span>, <span class="hljs-string">'Orange'</span>, <span class="hljs-string">'Nectarine'</span>, <span class="hljs-string">'Pear'</span>, <span class="hljs-string">'Apricot'</span>]
+sampleDict = {<span class="hljs-string">'apple'</span>:<span class="hljs-number">1000</span>,<span class="hljs-string">'banana'</span>:<span class="hljs-number">1100</span>,<span class="hljs-string">'pear'</span>:<span class="hljs-number">1200</span>,<span class="hljs-string">'nectarine'</span>:<span class="hljs-number">1500</span>,<span class="hljs-string">'apricot'</span>:<span class="hljs-number">9999</span>,<span class="hljs-string">'strawberry'</span>:<span class="hljs-number">1600</span>, <span class="hljs-string">'orange'</span>:<span class="hljs-number">1700</span>}
+      
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sampleList:
+    <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> sampleDict:
+        <span class="hljs-built-in">print</span>(<span class="hljs-string">'True'</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-built-in">print</span>(<span class="hljs-string">'False'</span>)</code></pre>
+<p>This is a simplified version of what I needed to do; however, this snippet of code demonstrates the idea. If I were to run the code above, I would get "False" for each element as an output. This is because capitalization matters in Python, i.e., if the two words that are being compared have differences in capitalization, then they will not be evaluated to being equal. Though this is a simple concept, for long lists, it may not be apparent that there are inconsistencies in casing, until there are problems down the road in your project. To fix this, I simply needed to make both the list and dictionary be in the same case.
+This is where list comprehension came in handy! I ensured that every element in the list was the same as the cases of each key in the dictionary. I added in this line of code to accomplish this:</p>
+<pre><code>sampleList = [x.casefold() <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> sampleList]</code></pre>
+<p>I could have used any number of case functions; however, I felt it was best to use casefold() and have Python ignore casing for the list entirely. I used a similar list comprehension to accomplish the task for the dictionary. 
+Ultimately, I wanted to return a new list that contained a list of the codes from the original list above. In this case, I want the output to look like:</p>
+<pre><code> <span class="output-code"> >>> [1000, 1100, 1700, 1500, 1200, 9999]</span></code></pre>
+<p>Notice that this new list contains the codes for each fruit in the original list, which were obtained from the dictionary dict. 
+To accomplish this, I wrote a for loop similar to the one below. It is not optimized, but does ultimately accomplish the goal to return the appropriate output. The logic initializes an empty list, where the final output will be stored. Then a for loop is used to iterate through each element of the list and check if that value is a value in the dictionary. If there is a match between a value in the list and the dictionary, then that value is appended to new_list. This is the code that generates the desired output: </p>
+<pre><code>
+new_list = []
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> sampleList:
+    <span class="hljs-keyword">if</span> i <span class="hljs-keyword">in</span> sampleDict:
+        <span class="hljs-keyword">for</span> key, value in sampleDict.items():
+            <span class="hljs-keyword">if</span> i == key:
+                  new_list.append(value)</code></pre>
+<p>The desired output could not be obtained if there were discrepancies with the casing. Differences in the casing would cause the <code>if i in dict</code> clause to evaluate to FALSE for any element that does not match the casing exactly with the dictionary.</p>
+<br>
+    </div>
+  </div>
+</div>
+

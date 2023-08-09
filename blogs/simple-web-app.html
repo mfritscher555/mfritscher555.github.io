@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   -->
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/8add67db46.js" crossorigin="anonymous"></script>
+</head>
+<!-- <body class="w3-light-grey"> -->
+
+
+    <!-- Nav bar -->
+    <nav class="navbar">
+      <ul>
+          <li><a href="../index.html">About</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+
+
+      </ul>
+  </nav>
+
+<!-- Banner -->
+  <div class="banner">
+    <h1> Welcome to my Blog! </h1>
+</div>
+
+<!-- Blog Container -->
+
+<div class="blog-container">
+  <div class="blog-box">
+
+
+
+
+<h1 id="developing-a-simple-web-application-in-python">Developing a Simple Web Application in Python</h1>
+<p class="date-posted">9 December 2022</p>
+<p>The other day, I began learning the Flask framework in Python, which is used to develop web applications. This allowed me to practice using html and css, use Python in a way that I hadn&#39;t used it before, and learn the basics of software development. By no means do I think that I aspire to be a software developer, but it is a topic that has interested me for the past few months, and I decided to give it a crack.</p>
+<p>The inspiration for the application sprouted from when I was trying to learn more about Object-Oriented programming. I began learning about classes in Python and how they can be used. In a practice file, I created different classes of shapes -- I gave each shapes unique attributes. For example, I created simple formulas that would calculate a circle&#39;s area and circumference, given its radius.</p>
+<pre><code class="lang-py"><span class="hljs-class">
+<span class="hljs-keyword">class</span> Circle:
+    <span class="hljs-keyword">def</span> <span class="other-keyword">__init__</span>(<span class="hljs-keyword">self</span>, radius)</span></span>:
+        <span class="hljs-keyword">self</span>.radius = radius
+
+    <span class="hljs-keyword">def</span> <span class="hljs-function">area</span>(<span class="param">radius</span>):
+        value = pi * <span class="hljs-keyword">self</span>.radius ** <span class="hljs-number">2</span>
+        <span class="hljs-keyword">return</span> value
+
+    <span class="hljs-keyword">def</span> <span class="hljs-function">circumference</span>(<span class="param">radius</span>):
+        value = <span class="hljs-number">2</span> * pi * <span class="hljs-keyword">self</span>.radius
+        <span class="hljs-keyword">return</span> value
+</code></pre>
+<p>I then created a web application that would accept a radius as an input, and would output the area and circumference as outputs. Though these calculations are simple, the focus on the project was learning <i id="italicize-normal">how</i> to implement this function in a way that is user-friendly. </p>
+<p>I then had to refactor my code such that the functions could be called within the Flask framework. 
+The code can be found on my GitHub page <a href="https://github.com/mfritscher555/webapp" target="_blank">here</a></p>
+<h2 id="learning-curves">Learning Curves</h2>
+<p>Learning the syntax relevant to Flask was somewhat difficult, given that it is a brand-new package to me. It was an extremely rewarding feeling to finally enter an input into the box and generate an output.</p>
