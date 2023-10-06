@@ -1,0 +1,66 @@
+/* Establishing a common font here */
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Montserrat", sans-serif;
+  color: black;
+}
+
+.page-container {
+  display: flex;
+  width: 8.5in;
+  height: 11in;
+  margin: 0 auto; /* Center the content */
+  background-color: #fff; /* Set a white background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: normal;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 1.625rem;
+  color: rgb(40, 40, 40);
+  font-family: "Quicksand", arial, sans-serif;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: #03a9f4;
+}
+
+h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: #03a9f4;
+  text-align: right;
+}
+
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 20px; /* change this to whatever height you want it */
+}
+
+ul {
+  list-style-type: circle;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  flex: 2;
+}
