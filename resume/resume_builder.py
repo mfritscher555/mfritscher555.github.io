@@ -5,6 +5,8 @@ from xhtml2pdf import pisa
 
 # Resume Builder - All of these fields can be edited!
 
+date = "1023"
+
 name = "Matthew Fritscher"
 title = "Data Analytics Professional"
 
@@ -352,7 +354,7 @@ options = {"page-size":"Letter",
            }
 
 # Convert HTML to PDF
-pdfkit.from_file('./resume/resume.html', './resume/resume_tester.pdf', configuration=config,options=options)
+pdfkit.from_file('./resume/resume.html', f'./resume/Matthew_Fritscher_{date}.pdf', configuration=config,options=options)
 
 
 # with open('./resume/resume.html', "r") as source_file:

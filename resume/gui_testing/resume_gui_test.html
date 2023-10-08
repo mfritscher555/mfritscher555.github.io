@@ -1,0 +1,256 @@
+
+
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+
+/* Establishing a common font here */
+
+/*
+* {  margin: 0;
+  padding: 0;
+}
+
+
+@page {
+  size: letter;
+}
+*/
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Garamond";
+  color: black;
+
+}
+
+.page-container {
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto; /* Center the content */
+  margin-top: 0.3rem;
+  background-color: #fff; /* Set a white background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: normal;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 1.625rem;
+  margin: 0.5rem;
+  }
+
+h3 {
+  font-size: 1.2rem;
+  margin: 0.3rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+  margin: 0.3rem;
+}
+
+br {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 20px; /* change this to whatever height you want it */
+}
+
+ul {
+  list-style-type: circle;
+  margin: 0.7rem;
+}
+
+li {
+  margin: 0.3rem;
+}
+
+.left-column {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding-left: 5px;
+  padding-right:10px;
+}
+
+.right-column {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  padding-right: 5px;
+}
+
+h5{
+  text-align:right;
+}
+
+.job-bullets{
+  margin-bottom: 5px;
+}
+
+p.university-name{
+  font-size: 1.2rem;
+  font-weight:bold;
+  margin-bottom:0;
+  margin-top: 0;
+}
+
+p.degree-name{
+  font-size: 1.2rem;
+  margin-top:0;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 1rem;
+}
+</style>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        </head>
+
+
+        <!-- Page Container -->
+        <div class="page-container">
+
+
+        
+
+        
+            <!-- Left Column -->
+            <div class="left-column">
+            <div class="left-card">
+                <div class="display-container">
+                <div class="display-bottommiddle">
+                </div>
+                </div>
+                <div class="container">
+                <h1>Noah</h1>
+                <h2>Model</h2>
+                <h3> Contact Information </h3>
+                <p>Email: mfritscher555@yahoo.com</p>
+                <p>Phone: 985-867-0661</p>
+                <p>Website: mfritscher555.github.io</p>
+
+                <h3 class="left-column-title">Technical Skills</h4>
+        
+                <h4 class="left-column-subtitle">Programming languages</h4>
+                    <ul>
+                        <li> Python</li>
+                        <li>R</li>
+                        <li>SQL - (T-SQL & MySQL)</li>
+                    </ul>
+                    <h4 class="left-column-subtitle">Data Visualization</h4>
+                    <ul>
+                        <li>Tableau</li>
+                        <li>seaborn</li>
+                        <li>matplotlib</li>
+                        <li>ggplot</li>
+                    </ul>
+
+                    <h4 class="left-column-subtitle">Machine Learning</h4>
+                    <ul>
+                    <li>TensorFlow</li>
+                    <li>XGBoost</li>
+                    <li>scikit-learn</li>
+                    </ul>
+
+                    <h4 class="left-column-subtitle">Other Tools</h4>
+                    <ul>
+                    <li>pandas, numpy, scipy</li>
+                    <li>Excel Solver/Analysis Toolpak</li>
+                    <li>HTML5, CSS</li>
+                    <li>regex</li>
+                    <li>SAS, JMP</li>
+                    <li>STATA</li>
+                    <li>RapidMiner</li>
+                    <li>Web Scraping - scrapy</li>
+                    </ul>
+                <h4 class="left-column-subtitle">Languages</h4>
+                <ul>
+                <li>Spanish - Professional Fluency ~C1 </li>
+                <li>Japanese - Beginner ~A2</li>
+
+                </div>
+            </div><br>
+
+            
+
+
+
+            <!-- End Left Column -->
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+            <div class="right-card">
+                <div class="container">
+                <div class="sub-container">
+                <h2>EXPERIENCE</h2>
+                <hr>
+                    <h3>JOB TITLE 1</h3>
+                    <br>
+                    <h4>JOB 1 COMPANY NAME HERE</h4>
+                    <li class="job-bullets">job1_bullet1</li>
+                    <li class="job-bullets">job1_bullet2</li>
+                    <li class="job-bullets">job1_bullet3</li>
+                    <hr>
+                    <h3>job2_title</h3>
+                    <br>
+                    <h4>job2_company</h4>
+                    <li class="job-bullets">job2_bullet1</li>
+                    <li class="job-bullets">job2_bullet2</li>
+                    <li class="job-bullets">job2_bullet3</li>
+                    <li class="job-bullets">job2_bullet4</li>
+                    <hr>
+                    <h2> EDUCATION</h2>
+                    <hr>
+                    
+                    <p class="university-name">university_name</p> 
+                    <p class="degree-name">degree1_name</p>
+                    <br>
+
+                    <p class="university-name">university_name</p> 
+                    <p class="degree-name">degree2_name, <b>Summa Cum Laude</b></p>
+                    Activities: LSU Tiger Marching Band (4 Years) - Trumpet
+                    <br>
+
+                    <p class="university-name">Universidad de Granada</p>
+                    <p class="degree-name"> Centro de Lenguas Modernas, Granada, Spain</p>
+                    <li>Spanish minor coursework completed during study abroad program in Granada, Spain.</li>
+
+
+
+                    
+
+                </div>
+            </div>
+
+            <!-- End Right Column -->
+            </div>
+            
+        <!-- End Grid -->
+        </div>
+        
+        <!-- End Page Container -->
+        </div>
+        </body>
+        </html>
+
+
+        
