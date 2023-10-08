@@ -1,8 +1,7 @@
-import markdown2
 
 # Resume Builder - All of these fields can be edited!
 
-name = "Matthew Fritscher M.S."
+name = "Matthew Fritscher"
 title = "Data Analytics Professional"
 
 university_name = "Louisiana State University"
