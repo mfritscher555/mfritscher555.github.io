@@ -1,50 +1,10 @@
 
-# Resume Builder - All of these fields can be edited!
-
-name = "Matthew Fritscher"
-title = "Data Analytics Professional"
-
-university_name = "Louisiana State University"
-
-degree1_name = "M.S. Analytics - Information Systems & Decision Sciences"
-degree1_date = "May 2023"
 
 
-degree2_name = "B.S. Economics - International Trade & Finance"
-degree2_date = "Dec 2021"
-
-honors = "Summa Cum Laude"
-job1_title = "Project Manager"
-job1_company = "Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)"
-job1_timeframe = "Jan 2023 - May 2023"
-job1_bullet1 = "Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics."
-job1_bullet2 = "Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives."
-job1_bullet3 = "Implemented Scrum and GitHub for version control, ensuring efficient project management and seamless collaboration."
-# job1_bullet4 = ""
-
-job2_title = "Analytics Graduate Assistant"
-job2_company = "Louisiana State University - Center for Analytics & Research for Transportation Safety (CARTS)"
-job2_timeframe = "July 2022 - May 2023"
-job2_bullet1 = "Collaborated with the analytics team to develop Python desktop applications for a Data Integration project, improving functionality and data accuracy by integrating data from various sources."
-job2_bullet2 = "Created a statewide Excel-based crash percentage calculator, simplifying data input and aligning the tool with DOTD standards for seamless integration with current data tracking processes."
-job2_bullet3 = "Refactored a Tableau application for HSIP to comply with MMUC5 convention, implementing dynamic calculations for an enhanced user experience and eliminating manual data updating."
-job2_bullet4 = "Streamlined web applications on the CARTS website by providing comprehensive documentation for Python scripts, enabling efficient troubleshooting and streamlined maintenance."
-
-programming_langauges = ""
-data_viz = ""
-data_etc = ""
-other = ""
-
-
-## Icons (HTML code in these strings)
-
-briefcase_image_str = "-"
-email_image_str = "-"
-phone_image_str = "-"
-website_image_str = "-"
-job_str = "--"
-
-style_string = """
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 /* Establishing a common font here */
 
 @page {
@@ -141,17 +101,7 @@ p.degree-name{
 }
 
 
-"""
-
-## HTML string will update dynamically with the above fields
-
-html_string = f"""
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>{style_string}</style>
+</style>
 <title>Home</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -173,8 +123,8 @@ html_string = f"""
           </div>
         </div>
         <div class="container">
-          <h1>{name}</h1>
-          <h2>{title}</h2>
+          <h1>Matthew Fritscher</h1>
+          <h2>Data Analytics Professional</h2>
           <h3> Contact Information </h3>
           <p>Email: mfritscher555@yahoo.com</p>
           <p>Phone: 985-867-0661</p>
@@ -236,30 +186,30 @@ html_string = f"""
           <div class="sub-container">
           <h2>EXPERIENCE</h2>
           <hr>
-            <h3>{job1_title}</h3>
+            <h3>Project Manager</h3>
             <br>
-            <h4>{job1_company}</h4>
-            <li class="job-bullets">{job1_bullet1}</li>
-            <li class="job-bullets">{job1_bullet2}</li>
-            <li class="job-bullets">{job1_bullet3}</li>
+            <h4>Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)</h4>
+            <li class="job-bullets">Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics.</li>
+            <li class="job-bullets">Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives.</li>
+            <li class="job-bullets">Implemented Scrum and GitHub for version control, ensuring efficient project management and seamless collaboration.</li>
             <hr>
-            <h3>{job2_title}</h3>
+            <h3>Analytics Graduate Assistant</h3>
              <br>
-            <h4>{job2_company}</h4>
-            <li class="job-bullets">{job2_bullet1}</li>
-            <li class="job-bullets">{job2_bullet2}</li>
-            <li class="job-bullets">{job2_bullet3}</li>
-            <li class="job-bullets">{job2_bullet4}</li>
+            <h4>Louisiana State University - Center for Analytics & Research for Transportation Safety (CARTS)</h4>
+            <li class="job-bullets">Collaborated with the analytics team to develop Python desktop applications for a Data Integration project, improving functionality and data accuracy by integrating data from various sources.</li>
+            <li class="job-bullets">Created a statewide Excel-based crash percentage calculator, simplifying data input and aligning the tool with DOTD standards for seamless integration with current data tracking processes.</li>
+            <li class="job-bullets">Refactored a Tableau application for HSIP to comply with MMUC5 convention, implementing dynamic calculations for an enhanced user experience and eliminating manual data updating.</li>
+            <li class="job-bullets">Streamlined web applications on the CARTS website by providing comprehensive documentation for Python scripts, enabling efficient troubleshooting and streamlined maintenance.</li>
             <hr>
             <h2> EDUCATION</h2>
             <hr>
             
-            <p class="university-name">{university_name}</p> 
-            <p class="degree-name">{degree1_name}</p>
+            <p class="university-name">Louisiana State University</p> 
+            <p class="degree-name">M.S. Analytics - Information Systems & Decision Sciences</p>
             <br>
 
-            <p class="university-name">{university_name}</p> 
-            <p class="degree-name">{degree2_name}, <b>Summa Cum Laude</b></p>
+            <p class="university-name">Louisiana State University</p> 
+            <p class="degree-name">B.S. Economics - International Trade & Finance, <b>Summa Cum Laude</b></p>
             Activities: LSU Tiger Marching Band (4 Years) - Trumpet
             <br>
 
@@ -290,27 +240,4 @@ html_string = f"""
 
 
 
-
-"""
-
-
-
-
-
-
-
-
-
-# Convert Markdown to HTML
-# html_content = markdown2.markdown(markdown_content)
-
-# Create a temporary HTML file with the styled Markdown content
-# final_html_content = f"<style>{style_string}</style>{markdown_content}"
-
-
-
-
-# # Convert HTML to PDF
-with open('./resume/resume.html', 'w') as file:
-    file.write(html_string)
 
