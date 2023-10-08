@@ -1,4 +1,8 @@
 
+import pdfkit
+from xhtml2pdf import pisa
+
+
 # Resume Builder - All of these fields can be edited!
 
 name = "Matthew Fritscher"
@@ -47,9 +51,16 @@ job_str = "--"
 style_string = """
 /* Establishing a common font here */
 
+/*
+* {  margin: 0;
+  padding: 0;
+}
+
+
 @page {
   size: letter;
 }
+*/
 
 html,
 body,
@@ -62,13 +73,16 @@ h6,
 p {
   font-family: "Garamond";
   color: black;
+
 }
 
 .page-container {
+
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  width: 8.5in;
-  height: 11in;
   margin: 0 auto; /* Center the content */
+  margin-top: 0.3rem;
   background-color: #fff; /* Set a white background */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
@@ -102,20 +116,25 @@ br {
 
 ul {
   list-style-type: circle;
-  margin:2px
+  margin: 0.7rem;
 }
 
 li {
-  margin: 3px;
+  margin: 0.3rem;
 }
 
 .left-column {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding-left: 5px;
+  padding-right:10px;
 }
 
 .right-column {
-  flex: 2;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
   padding-right: 5px;
 }
 
@@ -140,6 +159,10 @@ p.degree-name{
   margin-bottom: 0;
 }
 
+p {
+  font-size: 1rem;
+}
+
 
 """
 
@@ -154,7 +177,6 @@ html_string = f"""
 <style>{style_string}</style>
 <title>Home</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
@@ -314,3 +336,28 @@ html_string = f"""
 with open('./resume/resume.html', 'w') as file:
     file.write(html_string)
 
+
+
+# Specify the path to wkhtmltopdf executable
+config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+
+options = {"page-size":"Letter",
+           "margin-top":"0in",
+            "margin-bottom":"0in",
+           "margin-left":"0in",
+           "margin-right":"0in",
+           'encoding': "UTF-8",
+           "print-media-type": True,
+           'disable-smart-shrinking': True,
+           }
+
+# Convert HTML to PDF
+pdfkit.from_file('./resume/resume.html', './resume/resume_tester.pdf', configuration=config,options=options)
+
+
+# with open('./resume/resume.html', "r") as source_file:
+#     source_html = source_file.read()
+
+# # Create a PDF file
+# with open("./resume/resume_output_test.pdf", "wb") as output_file:
+#     pisa.CreatePDF(source_html, output_file)

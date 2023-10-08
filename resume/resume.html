@@ -7,9 +7,16 @@
 <style>
 /* Establishing a common font here */
 
+/*
+* {  margin: 0;
+  padding: 0;
+}
+
+
 @page {
   size: letter;
 }
+*/
 
 html,
 body,
@@ -22,13 +29,16 @@ h6,
 p {
   font-family: "Garamond";
   color: black;
+
 }
 
 .page-container {
+
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  width: 8.5in;
-  height: 11in;
   margin: 0 auto; /* Center the content */
+  margin-top: 0.3rem;
   background-color: #fff; /* Set a white background */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
@@ -62,20 +72,25 @@ br {
 
 ul {
   list-style-type: circle;
-  margin:2px
+  margin: 0.7rem;
 }
 
 li {
-  margin: 3px;
+  margin: 0.3rem;
 }
 
 .left-column {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding-left: 5px;
+  padding-right:10px;
 }
 
 .right-column {
-  flex: 2;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
   padding-right: 5px;
 }
 
@@ -100,11 +115,14 @@ p.degree-name{
   margin-bottom: 0;
 }
 
+p {
+  font-size: 1rem;
+}
+
 
 </style>
 <title>Home</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
