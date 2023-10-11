@@ -5,15 +5,30 @@ from backend_code import style_string
 
 
 
+## Features to include:
+## If key fields are left blank, have a popup occur to alert the user. Do not kill the program, but instead allow the user to correct
+## his mistakes and then be able to still press "GO!"
+
+
+
 # Define the layout of the window
 layout = [
+    [sg.Text("Welcome to the Resume Builder App!\nNeed helping designing a resume? You have come to the right place!\nAnswer the form below, and we will generate a pretty resume for you!")],
+    [sg.Text("This section gathers your personal information and creates a section so that hiring managers can easily contact you.")],
     [sg.Text("What is your name?"),sg.InputText(key="name")],
     [sg.Text("What is your job title/industry?"),sg.InputText(key="title")],
-    # [sg.Text("What contact information do you want to include?"), sg.Listbox(values=['Email', 'Phone', 'Website', 'LinkedIn'], size=(20, 4), key='contact-info', select_mode=sg.LISTBOX_SELECT_MODE_MULTIPLE)],
+    [sg.Text("Type in your phone number here, so that hiring managers can contact you!"), sg.InputText(key='phone-number')],
+    [sg.Text("Likewise, type in your email address here:"), sg.InputText(key='email-address')],    
+    [sg.Text("Do you have a website? If so, check YES and provide the link. Otherwise, check NO")],
+    [sg.Radio("YES", "WEBSITE_RADIO", key="has_website"), sg.Radio("NO", "WEBSITE_RADIO", default=True, key="no_website"), sg.InputText(key="website_input")],
+    [sg.Text("Do you have a LinkedIn page? If so, check YES and provide the link. Otherwise, check NO")],
+    [sg.Radio("YES", "LINKEDIN_RADIO", key="has_linkedin"), sg.Radio("NO", "LINKEDIN_RADIO", default=True, key="no_linkedin"), sg.InputText(key="linkedin_input")],
+    [sg.Text("This next section will contain all of the skills that you want to list on your resume!")],
+    [sg.Text("Do you want to include technical skills on your resume? Type in a skill and press enter. Repeat until you have entered all your desired skills."), sg.Multiline(key="technical_skills")],
+    [sg.Button('GO!')],
+    ]
 
 
-    [sg.Button('OK')]
-]
 
 # Create the window
 window = sg.Window('Welcome to the Resume Builder App!', layout)
@@ -25,14 +40,55 @@ while True:
     # If the window is closed or the button is clicked
     if event == sg.WINDOW_CLOSED:
         break
-    if event == "OK":
+    if event == "GO!":
         name = values["name"]
         title = values["title"]
         date = "1023"
+        phone_number = values["phone-number"]
+        email = values["email-address"]
 
 
-        print(contact_info)
+        # reformat below if conditionals into a function so that all optional resume features can be run through this function
 
+        # Optionally including website into resume. (improve LOGIC here for user not following instructions)
+
+
+        def optional_resume_features(feature_type, radio_result, user_text):
+            """Takes in user input to create html that will be used in the html_string
+
+            Parameters: 
+            feature_type: Is this the website, the linkedin, etc?
+            radio_result: If true, the label will be created in resume. otherwise it not be included in html string
+            user_text: the text that the user typed/pasted into the GUI
+            """
+            if radio_result is True:
+                if user_text is not None:
+                    if feature_type in ["Website", "LinkedIn"]:
+                        result = f"<p>{feature_type}: {user_text}</p>"
+                    elif feature_type == "Technical Skills":
+                        result_list = user_text.split('\n')
+                        result1 = f"""<h4 class="left-column-subtitle">{feature_type}:</h4>"""
+                        result2 = "<ul>"
+                        result3 = "" # intialize to be empty
+                        for item in result_list:
+                            result3 += f"<li>{item}</li>"
+                        result4 = "</ul>"
+                        result = result1 + result2 + result3 + result4
+                    return result
+                
+            else:
+                feature_type = ""
+                user_text = ""
+                result = ""
+                return result
+            
+            
+        website_string = optional_resume_features("Website", values["has_website"], values["website_input"])
+        linkedin_string = optional_resume_features("LinkedIn", values["has_linkedin"], values["linkedin_input"])
+        technical_skills_string = optional_resume_features("Technical Skills", True, values["technical_skills"])
+
+
+                
 
         html_string = f"""
 
@@ -64,11 +120,13 @@ while True:
                 <h1>{name}</h1>
                 <h2>{title}</h2>
                 <h3> Contact Information </h3>
-                <p>Email: mfritscher555@yahoo.com</p>
-                <p>Phone: 985-867-0661</p>
-                <p>Website: mfritscher555.github.io</p>
+                <p>Email: {email}</p>
+                <p>Phone: {phone_number}</p>
+                {website_string}
+                {linkedin_string}
 
-                <h3 class="left-column-title">Technical Skills</h4>
+                <h3 class="left-column-title">Skills</h3>
+                {technical_skills_string}
         
                 <h4 class="left-column-subtitle">Programming languages</h4>
                     <ul>
@@ -189,7 +247,7 @@ while True:
 
 
         # # Convert HTML to PDF
-        with open('./resume/resume_gui_test.html', 'w') as file:
+        with open(f'./resume/gui_testing/{name}_resume_gui_test.html', 'w') as file:
             file.write(html_string)
 
 
@@ -208,7 +266,7 @@ while True:
                 }
 
         # Convert HTML to PDF
-        pdfkit.from_file('./resume/resume_gui_test.html', f'./resume/{name}_resume_test_{date}.pdf', configuration=config,options=options)
+        pdfkit.from_file(f'./resume/gui_testing/{name}_resume_gui_test.html', f'./resume/gui_testing/{name}_resume_test_{date}.pdf', configuration=config,options=options)
 
 
         # with open('./resume/resume.html', "r") as source_file:
