@@ -37,7 +37,6 @@ p {
   margin: 0 auto; /* Center the content */
   margin-top: 0.3rem;
   background-color: #fff; /* Set a white background */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
 h1 {
@@ -74,6 +73,8 @@ ul {
 
 li {
   margin: 0.3rem;
+  overflow-wrap: break-word;
+
 }
 
 .left-column {
@@ -89,6 +90,7 @@ li {
       -ms-flex: 3;
           flex: 3;
   padding-right: 5px;
+  overflow-wrap: break-word;
 }
 
 h5{
@@ -115,4 +117,5 @@ p.degree-name{
 p {
   font-size: 1rem;
 }
+
 """
