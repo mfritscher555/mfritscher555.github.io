@@ -2,6 +2,24 @@ import PySimpleGUI as sg
 import pdfkit
 from xhtml2pdf import pisa
 from backend_code import style_string
+import pprint
+
+
+
+# Creating function to allow + and - of education and experience forms
+
+def add_row(row_counter, row_number_view):
+    row =  [sg.pin(
+            sg.Col([[
+            sg.Button("X", key=('-DELETE-', row_counter)),
+            sg.Input(key=('-DESC-', row_counter)),
+            sg.Text(f'Row {row_number_view}', key=('-STATUS-', row_counter))]],
+        key=('-ROW-', row_counter)
+
+        ))]
+    return row
+
+
 
 
 
@@ -11,8 +29,8 @@ from backend_code import style_string
 
 
 
-# Define the layout of the window
-layout = [
+# Define the layouts 
+layout_page1 = [
     [sg.Text("Welcome to the Resume Builder App!\nNeed helping designing a resume? You have come to the right place!\nAnswer the form below, and we will generate a pretty resume for you!")],
     [sg.Text("This section gathers your personal information and creates a section so that hiring managers can easily contact you.")],
     [sg.Text("What is your name?"),sg.InputText(key="name")],
@@ -22,10 +40,16 @@ layout = [
     [sg.Text("Do you have a website? If so, check YES and provide the link. Otherwise, check NO")],
     [sg.Radio("YES", "WEBSITE_RADIO", key="has_website"), sg.Radio("NO", "WEBSITE_RADIO", default=True, key="no_website"), sg.InputText(key="website_input")],
     [sg.Text("Do you have a LinkedIn page? If so, check YES and provide the link. Otherwise, check NO")],
-    [sg.Radio("YES", "LINKEDIN_RADIO", key="has_linkedin"), sg.Radio("NO", "LINKEDIN_RADIO", default=True, key="no_linkedin"), sg.InputText(key="linkedin_input")],
+    [sg.Radio("YES", "LINKEDIN_RADIO", key="has_linkedin"), sg.Radio("NO", "LINKEDIN_RADIO", default=True, key="no_linkedin"), sg.InputText(key="linkedin_input")]
+    ,
+    ]
+
+layout_page2 = [
     [sg.Text("This next section will contain all of the skills that you want to list on your resume!")],
     [sg.Text("Do you want to include technical skills on your resume? Type in a skill and press enter. Repeat until you have entered all your desired skills."), sg.Multiline(key="technical_skills")],
+    ]
 
+layout_page3 = [
     [sg.Text("Please enter in your most recent work experience information below")],
     [sg.Text("What was your job position/title?"), sg.InputText(key="job_title1")],
     [sg.Text("What was the company name?"), sg.InputText(key="company_name1")],
@@ -34,61 +58,114 @@ layout = [
     [sg.Text("What to include in second bullet point?"), sg.InputText(key="job1_bullet2")],
     [sg.Text("What to include in third bullet point?"), sg.InputText(key="job1_bullet3")],
     [sg.Text("What to include in fourth bullet point?"), sg.InputText(key="job1_bullet4")],
-    [sg.Button('GO!')],
     ]
 
+layout_page4 = [
+    [sg.Text("On this page, we will collect your educational background!")],
+    [sg.Text("Most recent degree (or most important) goes first.")],
+    # [sg.Text("What was your degree type?"), sg.Combo(values=["Ph. D.", "M.S."], key="degree_type")],
+    # [sg.Text("What was the name of your degree/major?"), sg.Combo(["Economics","Art"], key="degree_major")],
+    # [sg.Text("What was the name of your university, college, or other institution?"), sg.Combo(["LSU","SELU"], key="university_name")],
+     [sg.Column([add_row(0, 1)], k='-ROW_PANEL-')], 
+    [sg.Text('+', enable_events=True, k='-ADD_ITEM-', tooltip='Add Another Item')]
+]
+
+
+
+
+parent_layout = [
+    [sg.Column(layout_page1, key="-COL1-"),
+     sg.Column(layout_page2, key="-COL2-", visible=False),
+     sg.Column(layout_page3, key="-COL3-", visible=False),
+     sg.Column(layout_page4, key="-COL4-", visible=False)],
+     [sg.Button("Next")]
+]
 
 
 # Create the window
-window = sg.Window('Welcome to the Resume Builder App!', layout)
+window = sg.Window('Welcome to the Resume Builder App!', parent_layout)
 
 # Event loop to process events and interact with the window
+
+page_number = 1 # user gets put on first page by default. This is incremented by 1 when the user presses "Next"
+row_counter = 0 # used for counting rows created on education and experience windows
+row_number_view = 1
 while True:
     event, values = window.read()
     
     # If the window is closed or the button is clicked
     if event == sg.WINDOW_CLOSED:
         break
+
+    if event == "Next":
+        window[f"-COL{page_number}-"].update(visible=False)
+        if page_number < 4:
+            page_number += 1
+            window[f"-COL{page_number}-"].update(visible=True)
+        else:
+            window[f"-COL4-"].update(visible=True)
+
+
+    # values = {"-EDUCATION_COLUMNS-": []}  # Initialize with an empty list
+    if event == '-ADD_ITEM-':
+        row_counter += 1
+        row_number_view += 1
+        print("Actual Row Number: ", row_counter)
+        print("Displayed Row Number: ", row_number_view)
+        # Allows you to add items to a layout
+        # These items cannot be deleted, but can be made invisible
+        window.extend_layout(window['-ROW_PANEL-'], [add_row(row_counter, row_number_view)])
+    elif event[0] == '-DELETE-':
+        row_number_view -= 1
+        window[('-ROW-', event[1])].update(visible=False)
+
+
+
+
     if event == "GO!":
         ## UNCOMMENT OUT FOR TESTING SO USER CAN INPUT THEIR OWN INFO
-        # name = values["name"]
-        # title = values["title"]
-        # date = "1023"
-        # phone_number = values["phone-number"]
-        # email = values["email-address"]
+        name = values["name"]
+        title = values["title"]
+        date = "1023"
+        phone_number = values["phone-number"]
+        email = values["email-address"]
 
-        # experience1_job_title = values["job_title1"]
-        # experience1_company_name = values["company_name1"]
-        # experience1_bullets = values["job1_bullet1"] + "\n" + values["job1_bullet2"] + "\n" + values["job1_bullet3"] + "\n" + values["job1_bullet4"] + "\n"
+        experience1_job_title = values["job_title1"]
+        experience1_company_name = values["company_name1"]
+        experience1_bullets = values["job1_bullet1"] + "\n" + values["job1_bullet2"] + "\n" + values["job1_bullet3"] + "\n" + values["job1_bullet4"] + "\n"
 
+        degree1_name = values["degree_type"] + " " + values["degree_major"]
+        degree1_university = values["university_name"]
+
+        # degree1_name = values[""]
         
         ## FOR NOW, SAVING MY INFO FOR TESTING PURPOSES
 
         
-        date = "1023"
+        # date = "1023"
 
-        name = "Matthew Fritscher"
-        title = "Data Analytics Professional"
-        email = "mfritscher555@yahoo.com"
-        phone_number = "985-867-0661"
+        # name = "Matthew Fritscher"
+        # title = "Data Analytics Professional"
+        # email = "mfritscher555@yahoo.com"
+        # phone_number = "985-867-0661"
 
-        university_name = "Louisiana State University"
+        # university_name = "Louisiana State University"
 
-        degree1_name = "M.S. Analytics - Information Systems & Decision Sciences"
-        degree1_date = "May 2023"
+        # degree1_name = "M.S. Analytics - Information Systems & Decision Sciences"
+        # degree1_date = "May 2023"
 
 
-        degree2_name = "B.S. Economics - International Trade & Finance"
-        degree2_date = "Dec 2021"
+        # degree2_name = "B.S. Economics - International Trade & Finance"
+        # degree2_date = "Dec 2021"
 
-        honors = "Summa Cum Laude"
-        experience1_job_title = "Project Manager"
-        experience1_company_name = "Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)"
-        job1_timeframe = "Jan 2023 - May 2023"
-        job1_bullet1 = "Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics."
-        job1_bullet2 = "Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives."
-        job1_bullet3 = "Implemented Scrum and GitHub for version control, ensuring efficient project management and seamless collaboration."
-        job1_bullet4 = ""
+        # honors = "Summa Cum Laude"
+        # experience1_job_title = "Project Manager"
+        # experience1_company_name = "Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)"
+        # job1_timeframe = "Jan 2023 - May 2023"
+        # job1_bullet1 = "Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics."
+        # job1_bullet2 = "Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives."
+        # job1_bullet3 = "Implemented Scrum and GitHub for version control, ensuring efficient project management and seamless collaboration."
+        # job1_bullet4 = ""
 
 
 
@@ -109,8 +186,10 @@ while True:
             """
             if radio_result is True:
                 if user_text is not None:
-                    if feature_type in ["Website", "LinkedIn"]:
-                        result = f"<p>{feature_type}: {user_text}</p>"
+                    if feature_type == "Website":
+                        result = f"""<p><a href="https://{user_text}" target="_blank">My Website:</a></p>"""
+                    elif feature_type == "LinkedIn":
+                        result = f"""<a href="{user_text}"target="_blank">Click Here for LinkedIn</a>"""
                     elif feature_type == "Technical Skills":
                         result_list = user_text.split('\n')
                         result1 = f"""<h4 class="left-column-subtitle">{feature_type}:</h4>"""
@@ -147,28 +226,30 @@ while True:
             to avoid having empty bullet points on the page.
             
             """
-            
-            bullet_list = [user_input_bullet1, user_input_bullet2, user_input_bullet3, user_input_bullet4]
-            h3_content_string = f"\n<h3>{h3_content}</h3>\n<br>"
-            h4_content_string = f"<h4>{h4_content}</h4>\n"
-            # bullet_list = user_input_bullet.split('\n')
-            bullet_point = ""
-            for item in bullet_list:
-                if len(str(item)) > 0:
-                    bullet_point += f"""<li class="job-bullets">{item}</li>\n"""
-                else:
-                    last_bullet_point = ""
-            result = h3_content_string + h4_content_string + bullet_point + last_bullet_point
-            return result
+            if h3_content or h4_content:
+                bullet_list = [user_input_bullet1, user_input_bullet2, user_input_bullet3, user_input_bullet4]
+                h3_content_string = f"\n<h3>{h3_content}</h3>\n<br>"
+                h4_content_string = f"<h4>{h4_content}</h4>\n"
+                # bullet_list = user_input_bullet.split('\n')
+                bullet_point = ""
+                for item in bullet_list:
+                    if len(str(item)) > 0:
+                        bullet_point += f"""<li class="job-bullets">{item}</li>\n"""
+                    else:
+                        last_bullet_point = ""
+                result = h3_content_string + h4_content_string + bullet_point + last_bullet_point
+                return result
+            else:
+                return ""
         
 
         
         # Actual Code 
-        # experience1_string = meat_and_potatoes(experience1_job_title, experience1_company_name, values["job1_bullet1"], values["job1_bullet2"], values["job1_bullet3"], values["job1_bullet4"])
+        experience1_string = experience(experience1_job_title, experience1_company_name, values["job1_bullet1"], values["job1_bullet2"], values["job1_bullet3"], values["job1_bullet4"])
 
 
         # Tester Code
-        experience1_string = experience(experience1_job_title, experience1_company_name, job1_bullet1, job1_bullet2, job1_bullet3, job1_bullet4)
+        # experience1_string = experience(experience1_job_title, experience1_company_name, job1_bullet1, job1_bullet2, job1_bullet3, job1_bullet4)
 
 
 
@@ -191,7 +272,10 @@ while True:
             return result
 
 
-        education1_string = education(degree1_name, university_name, "")
+        # UNCOMMENT ONCE GUI IS CONNECTED TO THESE VARIABLES
+        education1_string = education(degree1_name, degree1_university, "")
+        # education2_string = education(degree2_name, university_name, honors)
+
 
 
                 
@@ -250,14 +334,10 @@ while True:
                     <hr>
                     <h2> EDUCATION</h2>
                     <hr>
-                    {education1_string}
+                    education1_string
+                    education2_string
                     
-                    <p class="university-name">university_name</p> 
-                    <p class="degree-name">degree1_name</p>
-                    <br>
 
-                    <p class="university-name">university_name</p> 
-                    <p class="degree-name">degree2_name</p>
                     <br>
                 </div>
             </div>

@@ -5,7 +5,7 @@ from xhtml2pdf import pisa
 
 # Resume Builder - All of these fields can be edited!
 
-date = "1023"
+date = "101623"
 
 name = "Matthew Fritscher"
 title = "Data Analytics Professional"
@@ -19,13 +19,17 @@ degree1_date = "May 2023"
 degree2_name = "B.S. Economics - International Trade & Finance"
 degree2_date = "Dec 2021"
 
+
+job1_date = "Jan 2023 - May 2023"
+job2_date = "Jul 2022 - May 2023"
+
 honors = "Summa Cum Laude"
 job1_title = "Project Manager"
 job1_company = "Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)"
 job1_timeframe = "Jan 2023 - May 2023"
 job1_bullet1 = "Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics."
 job1_bullet2 = "Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives."
-job1_bullet3 = "Implemented Scrum and GitHub for version control, ensuring efficient project management and seamless collaboration."
+job1_bullet3 = "Implemented Agile methodologies, including the use of Git for version control, ensuring efficient project management and seamless collaboration."
 # job1_bullet4 = ""
 
 job2_title = "Analytics Graduate Assistant"
@@ -33,7 +37,7 @@ job2_company = "Louisiana State University - Center for Analytics & Research for
 job2_timeframe = "July 2022 - May 2023"
 job2_bullet1 = "Collaborated with the analytics team to develop Python desktop applications for a Data Integration project, improving functionality and data accuracy by integrating data from various sources."
 job2_bullet2 = "Created a statewide Excel-based crash percentage calculator, simplifying data input and aligning the tool with DOTD standards for seamless integration with current data tracking processes."
-job2_bullet3 = "Refactored a Tableau application for HSIP to comply with MMUC5 convention, implementing dynamic calculations for an enhanced user experience and eliminating manual data updating."
+job2_bullet3 = "Automated updates for the a Tableau tool for the Highway Safety Improvement Program, ensuring real-time accuracy, eliminating manual adjustments with new data, and enhancing operational efficiency, enabling users to focus on data analysis."
 job2_bullet4 = "Streamlined web applications on the CARTS website by providing comprehensive documentation for Python scripts, enabling efficient troubleshooting and streamlined maintenance."
 
 programming_langauges = ""
@@ -73,7 +77,7 @@ h4,
 h5,
 h6,
 p {
-  font-family: "Garamond";
+  font-family: "Calibri";
   color: black;
 
 }
@@ -89,14 +93,17 @@ p {
 }
 
 h1 {
-  font-size: 3rem;
-  font-weight: normal;
+  font-size: 2.25rem;
+  font-weight: bold;
   margin: 0px;
+  font-family:"Verdana";
 }
 
 h2 {
   font-size: 1.625rem;
   margin: 0.5rem;
+  color: #228B22;
+  font-weight: bold;
   }
 
 h3 {
@@ -112,11 +119,10 @@ h4 {
 br {
   display: block; /* makes it have a width */
   content: ""; /* clears default height */
-  margin-top: 20px; /* change this to whatever height you want it */
+  margin-top: 5px; /* change this to whatever height you want it */
 }
 
 ul {
-  list-style-type: circle;
   margin: 0.7rem;
 }
 
@@ -152,6 +158,7 @@ p.university-name{
   font-weight:bold;
   margin-bottom:0;
   margin-top: 0;
+  padding: 0;
 }
 
 p.degree-name{
@@ -162,7 +169,42 @@ p.degree-name{
 
 p {
   font-size: 1rem;
+  padding: 0;
+  margin: 0;
 }
+
+p.date {
+  margin-top:0;
+  margin-bottom:0;
+  font-size: 1rem;
+  padding: 0;
+}
+
+p.honors {
+  font-size: 1rem;
+  font-weight:bold;
+  margin-top:0;
+  margin-bottom:0;
+  color: #228B22;
+}
+
+p.contact-info {
+  margin:5px;
+  color: black;
+}
+
+br.big-break {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 10px; /* change this to whatever height you want it */
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+
 
 
 """
@@ -199,13 +241,14 @@ html_string = f"""
           <h1>{name}</h1>
           <h2>{title}</h2>
           <h3> Contact Information </h3>
-          <p>Email: mfritscher555@yahoo.com</p>
-          <p>Phone: 985-867-0661</p>
-        <p>Website: mfritscher555.github.io</p>
+          <p class="contact-info">Email: mfritscher555@yahoo.com</p>
+          <p class="contact-info">Phone: 985-867-0661</p>
+        <p class="contact-info">Website: <a href="https://mfritscher555.github.io" target="_blank">mfritscher555.github.io</a></p>
+        <p class="contact-info">LinkedIn: <a href="https://www.linkedin.com/in/matthew-fritscher-908734164/"target="_blank">Click for LinkedIn</a></p>
 
           <h3 class="left-column-title">Technical Skills</h4>
   
-          <h4 class="left-column-subtitle">Programming languages</h4>
+          <h4 class="left-column-subtitle">Programming Languages</h4>
               <ul>
                 <li> Python</li>
                 <li>R</li>
@@ -262,6 +305,7 @@ html_string = f"""
             <h3>{job1_title}</h3>
             <br>
             <h4>{job1_company}</h4>
+            <p> {job1_date}</p>
             <li class="job-bullets">{job1_bullet1}</li>
             <li class="job-bullets">{job1_bullet2}</li>
             <li class="job-bullets">{job1_bullet3}</li>
@@ -269,6 +313,7 @@ html_string = f"""
             <h3>{job2_title}</h3>
              <br>
             <h4>{job2_company}</h4>
+            <p>{job2_date}</p>
             <li class="job-bullets">{job2_bullet1}</li>
             <li class="job-bullets">{job2_bullet2}</li>
             <li class="job-bullets">{job2_bullet3}</li>
@@ -278,16 +323,23 @@ html_string = f"""
             <hr>
             
             <p class="university-name">{university_name}</p> 
-            <p class="degree-name">{degree1_name}</p>
             <br>
+            <p class="degree-name">{degree1_name}</p>
+            <p class="date">{degree1_date}</p> 
+
+            <br class="big-break">
 
             <p class="university-name">{university_name}</p> 
-            <p class="degree-name">{degree2_name}, <b>Summa Cum Laude</b></p>
-            Activities: LSU Tiger Marching Band (4 Years) - Trumpet
             <br>
+            <p class="degree-name">{degree2_name}</p> 
+            <p class="honors">Summa Cum Laude</p>
+            <p class="date">{degree2_date}</p> 
+
+            <li>Activities: LSU Tiger Marching Band (4 Years) - Trumpet</li>
+            <br class="big-break">
 
             <p class="university-name">Universidad de Granada</p>
-             <p class="degree-name"> Centro de Lenguas Modernas, Granada, Spain</p>
+            <p class="degree-name"> Centro de Lenguas Modernas, Granada, Spain</p>
             <li>Spanish minor coursework completed during study abroad program in Granada, Spain.</li>
 
 
@@ -334,7 +386,7 @@ html_string = f"""
 
 
 # # Convert HTML to PDF
-with open('./resume/resume.html', 'w') as file:
+with open('resume.html', 'w') as file:
     file.write(html_string)
 
 
@@ -353,7 +405,7 @@ options = {"page-size":"Letter",
            }
 
 # Convert HTML to PDF
-pdfkit.from_file('./resume/resume.html', f'./resume/Matthew_Fritscher_{date}.pdf', configuration=config,options=options)
+pdfkit.from_file('resume.html', f'Matthew_Fritscher_{date}.pdf', configuration=config,options=options)
 
 
 # with open('./resume/resume.html', "r") as source_file:

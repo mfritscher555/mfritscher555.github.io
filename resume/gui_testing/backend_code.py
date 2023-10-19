@@ -1,7 +1,6 @@
 
 
 style_string = """
-
 /* Establishing a common font here */
 
 /*
@@ -63,7 +62,7 @@ h4 {
 br {
   display: block; /* makes it have a width */
   content: ""; /* clears default height */
-  margin-top: 20px; /* change this to whatever height you want it */
+  margin-top: 5px; /* change this to whatever height you want it */
 }
 
 ul {
@@ -73,8 +72,6 @@ ul {
 
 li {
   margin: 0.3rem;
-  overflow-wrap: break-word;
-
 }
 
 .left-column {
@@ -90,7 +87,6 @@ li {
       -ms-flex: 3;
           flex: 3;
   padding-right: 5px;
-  overflow-wrap: break-word;
 }
 
 h5{
@@ -116,6 +112,30 @@ p.degree-name{
 
 p {
   font-size: 1rem;
+}
+
+p.date {
+  margin-top:0;
+  margin-bottom:0;
+  font-size: 1rem;
+}
+
+p.honors {
+  font-size: 1rem;
+  font-weight:bold;
+  margin-top:0;
+  margin-bottom:0;
+}
+
+br.big-break {
+  display: block; /* makes it have a width */
+  content: ""; /* clears default height */
+  margin-top: 20px; /* change this to whatever height you want it */
+}
+
+a {
+  color: black;
+  text-decoration: underline;
 }
 
 """
