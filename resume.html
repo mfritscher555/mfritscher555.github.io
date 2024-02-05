@@ -1,60 +1,10 @@
 
-import pdfkit
-from xhtml2pdf import pisa
 
 
-# Resume Builder - All of these fields can be edited!
-
-date = "102423"
-
-name = "Matthew Fritscher"
-title = "Data Analytics Professional"
-
-university_name = "Louisiana State University"
-
-degree1_name = "M.S. Analytics - Information Systems & Decision Sciences"
-degree1_date = "May 2023"
-
-
-degree2_name = "B.S. Economics - International Trade & Finance"
-degree2_date = "Dec 2021"
-
-
-job1_date = "Jan 2023 - May 2023"
-job2_date = "Jul 2022 - May 2023"
-
-honors = "Summa Cum Laude"
-job1_title = "Project Manager"
-job1_company = "Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)"
-job1_timeframe = "Jan 2023 - May 2023"
-job1_bullet1 = "Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics."
-job1_bullet2 = "Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives."
-job1_bullet3 = "Implemented Agile methodologies, including the use of Git for version control, ensuring efficient project management and seamless collaboration."
-# job1_bullet4 = ""
-
-job2_title = "Analytics Graduate Assistant"
-job2_company = "Louisiana State University - Center for Analytics & Research for Transportation Safety (CARTS)"
-job2_timeframe = "July 2022 - May 2023"
-job2_bullet1 = "Collaborated with the analytics team to develop Python desktop applications for a Data Integration project, improving functionality and data accuracy by integrating data from various sources."
-job2_bullet2 = "Created a statewide Excel-based crash percentage calculator, simplifying data input and aligning the tool with DOTD standards for seamless integration with current data tracking processes."
-job2_bullet3 = "Automated updates for the a Tableau tool for the Highway Safety Improvement Program, ensuring real-time accuracy, eliminating manual adjustments with new data, and enhancing operational efficiency, enabling users to focus on data analysis."
-job2_bullet4 = "Streamlined web applications on the CARTS website by providing comprehensive documentation for Python scripts, enabling efficient troubleshooting and streamlined maintenance."
-
-programming_langauges = ""
-data_viz = ""
-data_etc = ""
-other = ""
-
-
-## Icons (HTML code in these strings)
-
-briefcase_image_str = "-"
-email_image_str = "-"
-phone_image_str = "-"
-website_image_str = "-"
-job_str = "--"
-
-style_string = """
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 /* Establishing a common font here */
 
 /*
@@ -207,17 +157,7 @@ a {
 
 
 
-"""
-
-## HTML string will update dynamically with the above fields
-
-html_string = f"""
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>{style_string}</style>
+</style>
 <title>Home</title>
 <meta charset="UTF-8">
 </head>
@@ -238,8 +178,8 @@ html_string = f"""
           </div>
         </div>
         <div class="container">
-          <h1>{name}</h1>
-          <h2>{title}</h2>
+          <h1>Matthew Fritscher</h1>
+          <h2>Data Analytics Professional</h2>
           <h3> Contact Information </h3>
           <p class="contact-info">Email: mfritscher555@yahoo.com</p>
           <p class="contact-info">Phone: 985-867-0661</p>
@@ -303,38 +243,38 @@ html_string = f"""
           <p>Matthew Fritscher is an experienced analytics professional with a background in analyzing complex data sets. He has effectively managed client engagements with large-scale banks and other industries with senior level client executives. Matthew is currently seeking a position in data analytics/science that will allow him to analyze complex data and create actionable intelligence. </p>
           <h2>EXPERIENCE</h2>
           <hr>
-            <h3>{job1_title}</h3>
+            <h3>Project Manager</h3>
             <br>
-            <h4>{job1_company}</h4>
-            <p> {job1_date}</p>
-            <li class="job-bullets">{job1_bullet1}</li>
-            <li class="job-bullets">{job1_bullet2}</li>
-            <li class="job-bullets">{job1_bullet3}</li>
+            <h4>Louisiana State University - MS Analytics Consulting Project (First Guaranty Bank)</h4>
+            <p> Jan 2023 - May 2023</p>
+            <li class="job-bullets">Led a Tableau project for First Guaranty Bank, transforming raw deposit data into dynamic visualizations and expanding analyses with additional financial metrics.</li>
+            <li class="job-bullets">Organized a team of six Analytics Graduate students to analyze deposit data, design visualizations, document findings, and present insights to senior bank executives.</li>
+            <li class="job-bullets">Implemented Agile methodologies, including the use of Git for version control, ensuring efficient project management and seamless collaboration.</li>
             <hr>
-            <h3>{job2_title}</h3>
+            <h3>Analytics Graduate Assistant</h3>
              <br>
-            <h4>{job2_company}</h4>
-            <p>{job2_date}</p>
-            <li class="job-bullets">{job2_bullet1}</li>
-            <li class="job-bullets">{job2_bullet2}</li>
-            <li class="job-bullets">{job2_bullet3}</li>
-            <li class="job-bullets">{job2_bullet4}</li>
+            <h4>Louisiana State University - Center for Analytics & Research for Transportation Safety (CARTS)</h4>
+            <p>Jul 2022 - May 2023</p>
+            <li class="job-bullets">Collaborated with the analytics team to develop Python desktop applications for a Data Integration project, improving functionality and data accuracy by integrating data from various sources.</li>
+            <li class="job-bullets">Created a statewide Excel-based crash percentage calculator, simplifying data input and aligning the tool with DOTD standards for seamless integration with current data tracking processes.</li>
+            <li class="job-bullets">Automated updates for the a Tableau tool for the Highway Safety Improvement Program, ensuring real-time accuracy, eliminating manual adjustments with new data, and enhancing operational efficiency, enabling users to focus on data analysis.</li>
+            <li class="job-bullets">Streamlined web applications on the CARTS website by providing comprehensive documentation for Python scripts, enabling efficient troubleshooting and streamlined maintenance.</li>
             <hr>
             <h2> EDUCATION</h2>
             <hr>
             
-            <p class="university-name">{university_name}</p> 
+            <p class="university-name">Louisiana State University</p> 
             <br>
-            <p class="degree-name">{degree1_name}</p>
-            <p class="date">{degree1_date}</p> 
+            <p class="degree-name">M.S. Analytics - Information Systems & Decision Sciences</p>
+            <p class="date">May 2023</p> 
 
             <br class="big-break">
 
-            <p class="university-name">{university_name}</p> 
+            <p class="university-name">Louisiana State University</p> 
             <br>
-            <p class="degree-name">{degree2_name}</p> 
+            <p class="degree-name">B.S. Economics - International Trade & Finance</p> 
             <p class="honors">Summa Cum Laude</p>
-            <p class="date">{degree2_date}</p> 
+            <p class="date">Dec 2021</p> 
 
             <p>Activities: Ogden Honors College, LSU Tiger Marching Band</p>
             <br class="big-break">
@@ -367,51 +307,3 @@ html_string = f"""
 
 
 
-"""
-
-
-
-
-
-
-
-
-
-# Convert Markdown to HTML
-# html_content = markdown2.markdown(markdown_content)
-
-# Create a temporary HTML file with the styled Markdown content
-# final_html_content = f"<style>{style_string}</style>{markdown_content}"
-
-
-
-
-# # Convert HTML to PDF
-with open('resume.html', 'w') as file:
-    file.write(html_string)
-
-
-
-# Specify the path to wkhtmltopdf executable
-config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-
-options = {"page-size":"Letter",
-           "margin-top":"0in",
-            "margin-bottom":"0in",
-           "margin-left":"0in",
-           "margin-right":"0in",
-           'encoding': "UTF-8",
-           "print-media-type": True,
-           'disable-smart-shrinking': True,
-           }
-
-# Convert HTML to PDF
-pdfkit.from_file('resume.html', f'./resume/Matthew_Fritscher_{date}.pdf', configuration=config,options=options)
-
-
-# with open('./resume/resume.html', "r") as source_file:
-#     source_html = source_file.read()
-
-# # Create a PDF file
-# with open("./resume/resume_output_test.pdf", "wb") as output_file:
-#     pisa.CreatePDF(source_html, output_file)
